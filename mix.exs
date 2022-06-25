@@ -38,6 +38,7 @@ defmodule PYREx.MixProject do
       {:ecto_sql, "~> 3.6"},
       {:esbuild, "~> 0.4", runtime: Mix.env() == :dev},
       {:ex_doc, "~> 0.27", only: [:test, :dev], runtime: false},
+      {:exshape, "~> 2.1.2"},
       {:floki, ">= 0.30.0", only: :test},
       {:fly_postgres, "~> 0.2.0"},
       {:geo_postgis, "~> 3.4"},
