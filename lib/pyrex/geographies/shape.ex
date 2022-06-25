@@ -8,6 +8,8 @@ defmodule PYREx.Geographies.Shape do
 
   import Ecto.Changeset
 
+  alias PYREx.Repo
+
   schema "shapes" do
     field :geom, Geo.PostGIS.Geometry
     field :mtfcc, :string
@@ -29,6 +31,8 @@ defmodule PYREx.Geographies.Shape do
     |> generate_pyrgeoid
     |> generate_id()
     |> validate_required([:id, :pyrgeoid])
+    |> unique_constraint(:id, name: "shapes_pkey")
+    |> unsafe_validate_unique([:id], Repo)
   end
 
   @doc false

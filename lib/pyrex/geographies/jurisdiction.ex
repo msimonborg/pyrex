@@ -9,6 +9,7 @@ defmodule PYREx.Geographies.Jurisdiction do
   import Ecto.Changeset
 
   alias PYREx.Geographies.{Jurisdiction, Shape}
+  alias PYREx.Repo
 
   schema "jurisdictions" do
     field :geoid, :string
@@ -45,6 +46,8 @@ defmodule PYREx.Geographies.Jurisdiction do
     |> generate_pyrgeoid()
     |> generate_id()
     |> validate_required([:id, :pyrgeoid])
+    |> unique_constraint(:id, name: "jurisdictions_pkey")
+    |> unsafe_validate_unique([:id], Repo)
   end
 
   @doc false

@@ -20,8 +20,9 @@ defmodule PYREx.Shapefile do
   for database insertion. The file is not saved to the file system.
   """
   def map_download(filepath, base_url, opts \\ []) do
-    shapefile = System.tmp_dir!() <> filepath
-    base_url = base_url |> String.trim_trailing("/") |> Kernel.<>("/")
+    tmp_dir = normalize_path(System.tmp_dir!())
+    shapefile = tmp_dir <> filepath
+    base_url = normalize_path(base_url)
     opts = Keyword.merge(opts, raw: true, output: shapefile, base_url: base_url)
     Req.get!(filepath, opts)
 
@@ -33,6 +34,10 @@ defmodule PYREx.Shapefile do
     File.rm!(shapefile)
 
     shapes
+  end
+
+  defp normalize_path(path) do
+    path |> String.trim_trailing("/") |> Kernel.<>("/")
   end
 
   @doc """
