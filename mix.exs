@@ -42,6 +42,7 @@ defmodule PYREx.MixProject do
       {:fly_postgres, "~> 0.2.0"},
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
+      {:libcluster, "~> 3.3"},
       {:phoenix, "~> 1.6.10"},
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_html, "~> 3.0"},

@@ -1,4 +1,6 @@
 defmodule PYREx.Repo.Local do
+  @moduledoc false
+
   use Ecto.Repo,
     otp_app: :pyrex,
     adapter: Ecto.Adapters.Postgres
@@ -13,5 +15,7 @@ defmodule PYREx.Repo.Local do
 end
 
 defmodule PYREx.Repo do
+  @moduledoc false
+
   use Fly.Repo, local_repo: PYREx.Repo.Local
 end
