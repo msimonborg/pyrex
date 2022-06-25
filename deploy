@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [ -z "$RELEASE_COOKIE" ]; then
+    echo "Set the RELEASE_COOKIE your project uses in the RELEASE_COOKIE ENV value before running this script"
+    exit 1
+fi
+
+fly deploy --build-arg RELEASE_COOKIE=${RELEASE_COOKIE}
