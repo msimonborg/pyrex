@@ -15,7 +15,7 @@ Phone Your Rep rewrite in Pheonix.
 
 ## Roadmap
 
-- [ ] Setup PostGIS database
+- [x] Setup PostGIS database
 - [ ] Load CD shapefiles
 - [ ] Model reps and offices in database schema
 - [ ] Modules/workers to fetch, load, and periodically update data from external source
