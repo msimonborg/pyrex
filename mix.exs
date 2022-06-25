@@ -53,6 +53,7 @@ defmodule PYREx.MixProject do
       {:phoenix_live_view, "~> 0.17.5"},
       {:plug_cowboy, "~> 2.5"},
       {:postgrex, ">= 0.0.0"},
+      {:req, "~> 0.3.0"},
       {:tailwind, "~> 0.1.6", runtime: Mix.env() == :dev},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"}
