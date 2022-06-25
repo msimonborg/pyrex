@@ -3,8 +3,7 @@ defmodule PYREx.Repo.Local do
 
   use Ecto.Repo,
     otp_app: :pyrex,
-    adapter: Ecto.Adapters.Postgres,
-    types: PYREx.PostgrexTypes
+    adapter: Ecto.Adapters.Postgres
 
   @env Mix.env()
 

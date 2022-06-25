@@ -18,7 +18,11 @@ config :pyrex, PYRExWeb.Endpoint,
   pubsub_server: PYREx.PubSub,
   live_view: [signing_salt: "YOoKQgxg"]
 
-config :pyrex, PYREx.Repo.Local, priv: "priv/repo"
+config :pyrex, PYREx.Repo.Local,
+  priv: "priv/repo",
+  extensions: [{Geo.PostGIS.Extension, library: Geo}],
+  adapter: Ecto.Adapters.Postgres,
+  types: PYREx.PostgrexTypes
 
 # Configures Plug.BasicAuth for viewing the live dashboard
 config :pyrex, :basic_auth,

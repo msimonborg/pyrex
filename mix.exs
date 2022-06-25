@@ -56,7 +56,8 @@ defmodule PYREx.MixProject do
       {:req, "~> 0.3.0"},
       {:tailwind, "~> 0.1.6", runtime: Mix.env() == :dev},
       {:telemetry_metrics, "~> 0.6"},
-      {:telemetry_poller, "~> 1.0"}
+      {:telemetry_poller, "~> 1.0"},
+      {:yaml_elixir, "~> 2.9"}
     ]
   end
 

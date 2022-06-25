@@ -3,6 +3,8 @@ defmodule PYREx.Shapefile do
   Read shapefile data.
   """
 
+  # credo:disable-for-this-file
+
   def shp(shapefile) do
     File.stream!(shapefile, [], 2048)
     |> Exshape.Shp.read()
@@ -19,6 +21,7 @@ defmodule PYREx.Shapefile do
   """
   def map_download(filepath, base_url, opts \\ []) do
     shapefile = System.tmp_dir!() <> filepath
+    base_url = base_url |> String.trim_trailing("/") |> Kernel.<>("/")
     opts = Keyword.merge(opts, raw: true, output: shapefile, base_url: base_url)
     Req.get!(filepath, opts)
 

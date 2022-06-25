@@ -16,11 +16,13 @@ Phone Your Rep rewrite in Pheonix.
 ## Roadmap
 
 - [x] Setup PostGIS database
-- [ ] Load CD shapefiles
+- [x] Load jurisdiction shapefiles
+- [x] Enable location-based lookups of jurisdictions
 - [ ] Model reps and offices in database schema
-- [ ] Modules/workers to fetch, load, and periodically update data from external source
+- [ ] Fetch reps and offices by jurisdiction
 - [ ] Geocode office locations
-- [ ] Fetch reps and offices from DB by intersection of coordinates and CD shape
+- [ ] Sort offices by proximity to address
+- [ ] Modules/workers to fetch, load, and periodically update data from external source
 - [ ] [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view) UI
 - [ ] GraphQL API using [Absinthe](https://github.com/absinthe-graphql/absinthe)
 

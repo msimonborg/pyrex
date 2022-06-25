@@ -1,4 +1,8 @@
 defmodule PYREx.Schema do
+  @moduledoc """
+  Shared schema functionality
+  """
+
   defmacro __using__(_) do
     quote do
       use Ecto.Schema
