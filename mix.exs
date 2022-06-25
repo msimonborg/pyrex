@@ -40,6 +40,7 @@ defmodule PYREx.MixProject do
       {:ex_doc, "~> 0.27", only: [:test, :dev], runtime: false},
       {:floki, ">= 0.30.0", only: :test},
       {:fly_postgres, "~> 0.2.0"},
+      {:geo_postgis, "~> 3.4"},
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:libcluster, "~> 3.3"},
