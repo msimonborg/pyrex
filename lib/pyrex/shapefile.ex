@@ -20,31 +20,35 @@ defmodule PYREx.Shapefile do
   for database insertion. The file is not saved to the file system.
   """
   def map_download(filepath, base_url, opts \\ []) do
-    tmp_dir = normalize_path(System.tmp_dir!())
-    shapefile = tmp_dir <> filepath
-    base_url = normalize_path(base_url)
-    opts = Keyword.merge(opts, raw: true, output: shapefile, base_url: base_url)
-    Req.get!(filepath, opts)
+    tmp_dir = System.tmp_dir!()
+    working_dir = Path.join([tmp_dir, random_string()])
+    File.mkdir!(working_dir)
+
+    shapefile = Path.join([tmp_dir, filepath])
+    url = Path.join([base_url, filepath])
+    opts = Keyword.merge(opts, raw: true, output: shapefile)
+    Req.get!(url, opts)
 
     shapes =
       shapefile
-      |> from_zip()
+      |> from_zip(working_dir: working_dir)
       |> map_shapes()
 
     File.rm!(shapefile)
+    File.rm_rf!(working_dir)
 
     shapes
   end
 
-  defp normalize_path(path) do
-    path |> String.trim_trailing("/") |> Kernel.<>("/")
+  defp random_string do
+    :crypto.strong_rand_bytes(32) |> Base.url_encode64() |> binary_part(0, 32)
   end
 
   @doc """
   Decodes data from a Zip archived shapefile in the current working directory.
   """
-  def from_zip(shapefile) do
-    [{_, _, shapes}] = Exshape.from_zip(shapefile)
+  def from_zip(shapefile, opts \\ []) do
+    [{_, _, shapes}] = Exshape.from_zip(shapefile, opts)
     shapes
   end
 

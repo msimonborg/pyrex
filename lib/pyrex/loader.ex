@@ -1,8 +1,19 @@
 defmodule PYREx.Loader do
   # credo:disable-for-this-file
+  require Logger
   alias PYREx.Shapefile
   alias PYREx.Geographies.{Shape, Jurisdiction}
   alias PYREx.Repo
+
+  defp insert(item, type) do
+    case Repo.insert(item) do
+      {:ok, item} ->
+        Logger.info("Inserted #{type} with id #{item.id}")
+
+      {:error, changeset} ->
+        Logger.error("Failed with errors #{inspect(changeset.errors)}")
+    end
+  end
 
   def run do
     shapefiles = PYREx.Sources.shapefiles()
@@ -18,7 +29,7 @@ defmodule PYREx.Loader do
           |> Shapefile.map_download(congress["base_url"])
           |> Enum.each(fn shape ->
             Shape.changeset(%Shape{}, shape)
-            |> Repo.insert!()
+            |> insert(:shape)
 
             jurisdiction =
               shape
@@ -27,7 +38,7 @@ defmodule PYREx.Loader do
               |> Map.put(:type, "us_cd")
 
             Jurisdiction.changeset(%Jurisdiction{}, jurisdiction)
-            |> Repo.insert!()
+            |> insert(:jurisdiction)
           end)
         end
       end)
@@ -39,7 +50,7 @@ defmodule PYREx.Loader do
           |> Shapefile.map_download(states["base_url"])
           |> Enum.map(fn shape ->
             Shape.changeset(%Shape{}, shape)
-            |> Repo.insert!()
+            |> insert(:shape)
 
             jurisdiction =
               shape
@@ -47,7 +58,7 @@ defmodule PYREx.Loader do
               |> Map.put(:type, "us_state")
 
             Jurisdiction.changeset(%Jurisdiction{}, jurisdiction)
-            |> Repo.insert!()
+            |> insert(:jurisdiction)
           end)
         end
       end)
@@ -59,7 +70,7 @@ defmodule PYREx.Loader do
           |> Shapefile.map_download(sldl["base_url"])
           |> Enum.each(fn shape ->
             Shape.changeset(%Shape{}, shape)
-            |> Repo.insert!()
+            |> insert(:shape)
 
             jurisdiction =
               shape
@@ -68,7 +79,7 @@ defmodule PYREx.Loader do
               |> Map.put(:type, "us_sldl")
 
             Jurisdiction.changeset(%Jurisdiction{}, jurisdiction)
-            |> Repo.insert!()
+            |> insert(:jurisdiction)
           end)
         end
       end)
@@ -80,7 +91,7 @@ defmodule PYREx.Loader do
           |> Shapefile.map_download(sldu["base_url"])
           |> Enum.each(fn shape ->
             Shape.changeset(%Shape{}, shape)
-            |> Repo.insert!()
+            |> insert(:shape)
 
             jurisdiction =
               shape
@@ -89,7 +100,7 @@ defmodule PYREx.Loader do
               |> Map.put(:type, "us_sldu")
 
             Jurisdiction.changeset(%Jurisdiction{}, jurisdiction)
-            |> Repo.insert!()
+            |> insert(:jurisdiction)
           end)
         end
       end)
