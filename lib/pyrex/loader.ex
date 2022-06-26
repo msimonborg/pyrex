@@ -11,11 +11,14 @@ defmodule PYREx.Loader do
         Logger.info("Inserted #{type} with id #{item.id}")
 
       {:error, changeset} ->
-        Logger.error("Failed with errors #{inspect(changeset.errors)}")
+        Logger.error(
+          "Insertion of #{type} with id #{item.id} failed " <>
+            "with errors #{inspect(changeset.errors)}"
+        )
     end
   end
 
-  def run do
+  def shapes_and_jurisdictions do
     shapefiles = PYREx.Sources.shapefiles()
     congress = shapefiles["congress"]
     states = shapefiles["states"]

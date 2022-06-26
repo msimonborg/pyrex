@@ -21,7 +21,7 @@ defmodule PYREx.MixProject do
   def application do
     [
       mod: {PYREx.Application, []},
-      extra_applications: [:logger, :runtime_tools, :os_mon]
+      extra_applications: [:logger, :os_mon, :runtime_tools]
     ]
   end
 
