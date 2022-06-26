@@ -22,14 +22,14 @@ Phone Your Rep rewrite in Pheonix.
 - [x] Fetch reps and offices by jurisdiction
 - [x] Geocode office locations
 - [ ] Sort offices by proximity to address
-- [ ] Modules/workers to fetch, load, and periodically update data from external source
+- [x] Modules/workers to fetch, load, and periodically update data from external source
 - [ ] [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view) UI
 - [ ] GraphQL API using [Absinthe](https://github.com/absinthe-graphql/absinthe)
 
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
+  * Create, migrate, and load your database with `mix ecto.setup`
   * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
