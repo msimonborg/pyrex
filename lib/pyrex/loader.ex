@@ -49,6 +49,24 @@ defmodule PYREx.Loader do
     if String.length(district) == 1, do: "0" <> district, else: district
   end
 
+  def us_legislators_district_offices do
+    entries = Sources.us_legislators_district_offices!()
+
+    Enum.each(entries, fn entry ->
+      bioguide = Map.fetch!(entry["id"], "bioguide")
+      offices = Map.get(entry, "offices", [])
+
+      Enum.each(offices, fn office ->
+        office
+        |> Map.put("person_id", bioguide)
+        |> Map.put("lat", office["latitude"])
+        |> Map.put("lon", office["longitude"])
+        |> Map.put("statefp", PYREx.FIPS.state_code(office["state"]))
+        |> PYREx.Offices.create_district_office()
+      end)
+    end)
+  end
+
   def shapes_and_jurisdictions do
     shapefiles = Sources.shapefiles!()
     congress = shapefiles["congress"]

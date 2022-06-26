@@ -18,9 +18,9 @@ Phone Your Rep rewrite in Pheonix.
 - [x] Setup PostGIS database
 - [x] Load jurisdiction shapefiles
 - [x] Enable location-based lookups of jurisdictions
-- [ ] Model reps and offices in database schema
-- [ ] Fetch reps and offices by jurisdiction
-- [ ] Geocode office locations
+- [x] Model reps and offices in database schema
+- [x] Fetch reps and offices by jurisdiction
+- [x] Geocode office locations
 - [ ] Sort offices by proximity to address
 - [ ] Modules/workers to fetch, load, and periodically update data from external source
 - [ ] [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view) UI

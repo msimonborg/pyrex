@@ -8,7 +8,7 @@ defmodule PYREx.Officials.Person do
   import Ecto.Changeset
 
   alias PYREx.Officials.{ID, Term}
-  alias PYREx.Repo
+  alias PYREx.{Offices.DistrictOffice, Repo}
 
   schema "people" do
     field :birthday, :date
@@ -18,8 +18,11 @@ defmodule PYREx.Officials.Person do
     field :official_full, :string
 
     has_many :ids, ID, on_replace: :delete
+
     has_many :terms, Term, on_replace: :delete
     has_one :current_term, Term, where: [current: true]
+
+    has_many :district_offices, DistrictOffice
 
     timestamps()
   end

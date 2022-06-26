@@ -6,7 +6,7 @@ defmodule PYREx.Repo.Migrations.CreateIds do
       add :id, :string, primary_key: true
       add :type, :string
       add :value, :string
-      add :person_id, references(:people, type: :string, on_delete: :nothing)
+      add :person_id, references(:people, type: :string, on_delete: :delete_all)
 
       timestamps()
     end

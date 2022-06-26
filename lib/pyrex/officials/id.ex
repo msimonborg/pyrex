@@ -6,13 +6,12 @@ defmodule PYREx.Officials.ID do
 
   import Ecto.Changeset
 
-  alias PYREx.{Officials.Person, Repo}
+  alias PYREx.Repo
 
   schema "ids" do
     field :type, :string
     field :value, :string
-
-    belongs_to :person, Person
+    field :person_id, :string
 
     timestamps()
   end

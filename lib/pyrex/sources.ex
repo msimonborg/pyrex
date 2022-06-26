@@ -6,7 +6,7 @@ defmodule PYREx.Sources do
   """
 
   @doc """
-  Get a list of sources from the remote repo.
+  Get data from the remote repo.
   """
   def get!(url) do
     response_body = Req.get!(url).body
@@ -21,12 +21,23 @@ defmodule PYREx.Sources do
   end
 
   @doc """
-  The url paths for shapefile data.
+  The YAML data for current U.S. legislators.
   """
   def us_legislators! do
     url =
       "https://raw.githubusercontent.com/unitedstates/" <>
         "congress-legislators/main/legislators-current.yaml"
+
+    get!(url)
+  end
+
+  @doc """
+  The YAML data for the district offices of current U.S. legislators.
+  """
+  def us_legislators_district_offices! do
+    url =
+      "https://raw.githubusercontent.com/unitedstates/" <>
+        "congress-legislators/main/legislators-district-offices.yaml"
 
     get!(url)
   end

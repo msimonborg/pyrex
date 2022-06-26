@@ -28,9 +28,10 @@ defmodule PYREx.Officials do
       from(p in Person,
         join: t in assoc(p, :terms),
         where: t.current == true,
-        preload: [current_term: t],
         join: j in subquery(jurisdictions_query),
-        on: j.geoid == t.geoid
+        on: j.geoid == t.geoid,
+        join: o in assoc(p, :district_offices),
+        preload: [current_term: t, district_offices: o]
       )
 
     Repo.all(query)

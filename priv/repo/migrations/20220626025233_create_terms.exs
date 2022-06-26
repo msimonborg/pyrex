@@ -20,7 +20,7 @@ defmodule PYREx.Repo.Migrations.CreateTerms do
       add :office, :string
       add :phone, :string
       add :current, :boolean
-      add :person_id, references(:people, type: :string, on_delete: :nothing)
+      add :person_id, references(:people, type: :string, on_delete: :delete_all)
 
       timestamps()
     end
