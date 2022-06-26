@@ -20,7 +20,7 @@ defmodule Geocodex.Providers.USCB do
     coordinates = get_in(body, ["result", "addressMatches", Access.at(0), "coordinates"])
 
     case coordinates do
-      %{"x" => x, "y" => y} -> {:ok, %{x: x, y: y}}
+      %{"x" => x, "y" => y} -> {:ok, %{lon: x, lat: y}}
       nil -> {:error, :coordinates_not_found}
     end
   end

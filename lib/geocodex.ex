@@ -13,13 +13,13 @@ defmodule Geocodex do
   @type address :: String.t()
 
   @typedoc "A map containing x/y coordinates"
-  @type coordinates :: %{x: float, y: float}
+  @type coordinates :: %{lon: float, lat: float}
 
   @doc """
   Geocodes an address into x/y coordinates.
   ## Examples
       iex> Geocodex.coordinates("1600 Pennsylvania Ave NW, Washington, D.C., 20500")
-      {:ok, %{x: -77.03535, y: 38.898754}}
+      {:ok, %{lon: -77.03535, lat: 38.898754}}
   """
   @spec coordinates(address) :: {:ok, coordinates}
   def coordinates(address), do: provider().coordinates(address)

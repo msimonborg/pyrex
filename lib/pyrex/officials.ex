@@ -21,6 +21,21 @@ defmodule PYREx.Officials do
     Repo.all(Person)
   end
 
+  def list_current_people_for_location(location) do
+    jurisdictions_query = PYREx.Geographies.intersecting_jurisdictions_query(location)
+
+    query =
+      from(p in Person,
+        join: t in assoc(p, :terms),
+        where: t.current == true,
+        preload: [current_term: t],
+        join: j in subquery(jurisdictions_query),
+        on: j.geoid == t.geoid
+      )
+
+    Repo.all(query)
+  end
+
   @doc """
   Gets a single person.
 

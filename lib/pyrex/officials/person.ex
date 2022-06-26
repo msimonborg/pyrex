@@ -19,6 +19,7 @@ defmodule PYREx.Officials.Person do
 
     has_many :ids, ID, on_replace: :delete
     has_many :terms, Term, on_replace: :delete
+    has_one :current_term, Term, where: [current: true]
 
     timestamps()
   end

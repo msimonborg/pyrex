@@ -7,7 +7,7 @@ defmodule PYREx.Officials.Term do
 
   import Ecto.Changeset
 
-  alias PYREx.{Officials.Person, Repo}
+  alias PYREx.{Geographies.Jurisdiction, Officials.Person, Repo}
 
   schema "terms" do
     field :address, :string
@@ -17,7 +17,6 @@ defmodule PYREx.Officials.Term do
     field :current, :boolean
     field :district, :string
     field :end, :date
-    field :geoid, :string
     field :office, :string
     field :party, :string
     field :phone, :string
@@ -30,6 +29,11 @@ defmodule PYREx.Officials.Term do
     field :url, :string
 
     belongs_to :person, Person
+
+    belongs_to :jurisdiction,
+               Jurisdiction,
+               references: :geoid,
+               foreign_key: :geoid
 
     timestamps()
   end

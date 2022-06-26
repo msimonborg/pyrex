@@ -9,7 +9,7 @@ defmodule PYREx.Geographies.Jurisdiction do
   import Ecto.Changeset
 
   alias PYREx.Geographies.{Jurisdiction, Shape}
-  alias PYREx.Repo
+  alias PYREx.{Officials.Term, Repo}
 
   schema "jurisdictions" do
     field :geoid, :string
@@ -29,6 +29,21 @@ defmodule PYREx.Geographies.Jurisdiction do
              references: :statefp,
              foreign_key: :statefp,
              where: [type: {:in, ["us_cd", "us_sldl", "us_sldu"]}]
+
+    has_many :terms,
+             Term,
+             references: :geoid,
+             foreign_key: :geoid
+
+    has_many :current_terms,
+             Term,
+             references: :geoid,
+             foreign_key: :geoid,
+             where: [current: true]
+
+    has_many :people, through: [:terms, :person]
+
+    has_many :current_people, through: [:current_terms, :person]
 
     has_one :shape,
             Shape,

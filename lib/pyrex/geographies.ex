@@ -202,30 +202,36 @@ defmodule PYREx.Geographies do
             updated_at: ~N[2019-03-24 00:23:52]
           }, %PYREx.Geographies.Jurisdiction{...}, ...]
   """
-  def intersecting_jurisdictions(address) when is_binary(address) do
+  def intersecting_jurisdictions(location) do
+    location
+    |> intersecting_jurisdictions_query()
+    |> Repo.all()
+  end
+
+  def intersecting_jurisdictions_query(address) when is_binary(address) do
     case Geocodex.coordinates(address) do
-      {:ok, %{x: x, y: y}} -> intersecting_jurisdictions({y, x})
+      {:ok, coordinates} -> intersecting_jurisdictions_query(coordinates)
       :error -> []
     end
   end
 
-  def intersecting_jurisdictions({lat, lon}) when is_binary(lat) and is_binary(lon) do
-    intersecting_jurisdictions({String.to_float(lat), String.to_float(lon)})
+  def intersecting_jurisdictions_query(%{lat: lat, lon: lon} = coordinates)
+      when is_binary(lat) and is_binary(lon) do
+    coordinates
+    |> Map.new(fn {k, v} -> {k, String.to_float(v)} end)
+    |> intersecting_jurisdictions_query()
   end
 
-  def intersecting_jurisdictions(coordinates = {lat, lon})
+  def intersecting_jurisdictions_query(%{lat: lat, lon: lon})
       when is_number(lat) and is_number(lon) do
-    %Geo.Point{coordinates: coordinates, srid: PYREx.Shapefile.srid()}
-    |> intersecting_jurisdictions()
+    %Geo.Point{coordinates: {lat, lon}, srid: PYREx.Shapefile.srid()}
+    |> intersecting_jurisdictions_query()
   end
 
-  def intersecting_jurisdictions(geom) do
-    query =
-      from(j in Jurisdiction,
-        join: s in assoc(j, :shape),
-        where: st_intersects(s.geom, ^geom)
-      )
-
-    Repo.all(query)
+  def intersecting_jurisdictions_query(geom) do
+    from(j in Jurisdiction,
+      join: s in assoc(j, :shape),
+      where: st_intersects(s.geom, ^geom)
+    )
   end
 end
