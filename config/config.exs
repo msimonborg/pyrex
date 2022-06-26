@@ -22,7 +22,9 @@ config :pyrex, PYREx.Repo.Local,
   priv: "priv/repo",
   extensions: [{Geo.PostGIS.Extension, library: Geo}],
   adapter: Ecto.Adapters.Postgres,
-  types: PYREx.PostgrexTypes
+  types: PYREx.PostgrexTypes,
+  queue_target: 1_000,
+  queue_interval: 10_000
 
 # Configures Plug.BasicAuth for viewing the live dashboard
 config :pyrex, :basic_auth,

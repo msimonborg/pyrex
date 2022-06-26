@@ -164,7 +164,7 @@ defmodule PYREx.Loader do
   end
 
   defp insert(changeset, type) do
-    case Repo.insert(changeset) do
+    case Repo.insert(changeset, timeout: :infinity) do
       {:ok, record} ->
         Logger.info("Inserted #{type} with id #{record.id}")
 
