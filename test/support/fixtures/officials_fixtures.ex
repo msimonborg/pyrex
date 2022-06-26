@@ -45,6 +45,7 @@ defmodule PYREx.OfficialsFixtures do
     {:ok, term} =
       attrs
       |> Enum.into(%{
+        bioguide: "some bioguide",
         address: "some address",
         class: 42,
         contact_form: "some contact_form",
@@ -96,6 +97,7 @@ defmodule PYREx.OfficialsFixtures do
       "official_full" => "Sherrod Brown",
       "terms" => [
         %{
+          "bioguide" => "B000944",
           "current" => false,
           "district" => "13",
           "end" => "1995-01-03",
@@ -105,6 +107,7 @@ defmodule PYREx.OfficialsFixtures do
           "type" => "rep"
         },
         %{
+          "bioguide" => "B000944",
           "current" => false,
           "district" => "13",
           "end" => "1997-01-03",
@@ -114,6 +117,7 @@ defmodule PYREx.OfficialsFixtures do
           "type" => "rep"
         },
         %{
+          "bioguide" => "B000944",
           "current" => false,
           "district" => "13",
           "end" => "1999-01-03",
@@ -123,6 +127,7 @@ defmodule PYREx.OfficialsFixtures do
           "type" => "rep"
         },
         %{
+          "bioguide" => "B000944",
           "current" => false,
           "district" => "13",
           "end" => "2001-01-03",
@@ -132,6 +137,7 @@ defmodule PYREx.OfficialsFixtures do
           "type" => "rep"
         },
         %{
+          "bioguide" => "B000944",
           "current" => false,
           "district" => "13",
           "end" => "2003-01-03",
@@ -141,6 +147,7 @@ defmodule PYREx.OfficialsFixtures do
           "type" => "rep"
         },
         %{
+          "bioguide" => "B000944",
           "current" => false,
           "district" => "13",
           "end" => "2005-01-03",
@@ -151,6 +158,7 @@ defmodule PYREx.OfficialsFixtures do
           "url" => "http://www.house.gov/sherrodbrown"
         },
         %{
+          "bioguide" => "B000944",
           "current" => false,
           "district" => "13",
           "end" => "2007-01-03",
@@ -161,6 +169,7 @@ defmodule PYREx.OfficialsFixtures do
           "url" => "http://www.house.gov/sherrodbrown"
         },
         %{
+          "bioguide" => "B000944",
           "address" => "713 HART SENATE OFFICE BUILDING WASHINGTON DC 20510",
           "class" => 1,
           "contact_form" => "http://www.brown.senate.gov/contact/",
@@ -177,6 +186,7 @@ defmodule PYREx.OfficialsFixtures do
           "url" => "http://brown.senate.gov/"
         },
         %{
+          "bioguide" => "B000944",
           "address" => "713 Hart Senate Office Building Washington DC 20510",
           "class" => 1,
           "contact_form" => "http://www.brown.senate.gov/contact/",
@@ -195,6 +205,7 @@ defmodule PYREx.OfficialsFixtures do
           "url" => "https://www.brown.senate.gov"
         },
         %{
+          "bioguide" => "B000944",
           "address" => "503 Hart Senate Office Building Washington DC 20510",
           "class" => 1,
           "contact_form" => "https://www.brown.senate.gov/contact/",

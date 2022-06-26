@@ -11,6 +11,7 @@ defmodule PYREx.Officials.Term do
 
   schema "terms" do
     field :address, :string
+    field :bioguide, :string
     field :class, :integer
     field :contact_form, :string
     field :current, :boolean
@@ -46,7 +47,8 @@ defmodule PYREx.Officials.Term do
     :address,
     :office,
     :phone,
-    :current
+    :current,
+    :bioguide
   ]
 
   @required_fields [
@@ -55,7 +57,8 @@ defmodule PYREx.Officials.Term do
     :end,
     :state,
     :current,
-    :district
+    :district,
+    :bioguide
   ]
 
   @doc false
@@ -70,11 +73,9 @@ defmodule PYREx.Officials.Term do
   end
 
   defp generate_id(changeset) do
-    state = Map.get(changeset.changes, :state, changeset.data.state)
-    type = Map.get(changeset.changes, :type, changeset.data.type)
+    bioguide = Map.get(changeset.changes, :bioguide, changeset.data.bioguide)
     start = Map.get(changeset.changes, :start, changeset.data.start)
-    district = Map.get(changeset.changes, :district, changeset.data.district)
 
-    change(changeset, id: "#{state}:#{type}:#{district}:#{start}")
+    change(changeset, id: "#{bioguide}:#{start}")
   end
 end

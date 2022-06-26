@@ -1,25 +1,47 @@
 defmodule PYREx.Loader do
   # credo:disable-for-this-file
   require Logger
-  alias PYREx.Shapefile
+  alias PYREx.{Repo, Shapefile, Sources}
   alias PYREx.Geographies.{Shape, Jurisdiction}
-  alias PYREx.Repo
 
-  defp insert(item, type) do
-    case Repo.insert(item) do
-      {:ok, item} ->
-        Logger.info("Inserted #{type} with id #{item.id}")
+  def us_legislators do
+    reps = Sources.us_legislators!()
 
-      {:error, changeset} ->
-        Logger.error(
-          "Insertion of #{type} with id #{item.id} failed " <>
-            "with errors #{inspect(changeset.errors)}"
-        )
-    end
+    Enum.each(reps, fn rep ->
+      bioguide = get_in(rep, ["id", "bioguide"])
+
+      rep
+      |> Map.merge(rep["bio"])
+      |> Map.merge(rep["name"])
+      |> Map.put("ids", rep["id"])
+      |> Map.put("id", bioguide)
+      |> Map.update("ids", [], &normalize_ids/1)
+      |> Map.update("terms", [], fn terms -> normalize_terms(terms, bioguide) end)
+      |> Map.drop(["bio", "name"])
+      |> PYREx.Officials.create_or_update_person!()
+    end)
+  end
+
+  defp normalize_ids(ids) do
+    Enum.map(ids, fn {k, v} ->
+      %{"type" => k, "value" => to_string(v)}
+    end)
+    |> Enum.reject(fn %{"value" => value} -> value == "" end)
+  end
+
+  defp normalize_terms(terms, bioguide) do
+    Enum.map(terms, fn term ->
+      current = if term == List.last(terms), do: true, else: false
+
+      term
+      |> Map.put_new("current", current)
+      |> Map.put_new("bioguide", bioguide)
+      |> Map.update("district", "at-large", &to_string/1)
+    end)
   end
 
   def shapes_and_jurisdictions do
-    shapefiles = PYREx.Sources.shapefiles()
+    shapefiles = Sources.shapefiles!()
     congress = shapefiles["congress"]
     states = shapefiles["states"]
     sldl = shapefiles["state_legislative_districts_lower"]
@@ -112,5 +134,18 @@ defmodule PYREx.Loader do
     |> List.flatten()
     |> Task.async_stream(fn task -> task.() end, timeout: :infinity)
     |> Stream.run()
+  end
+
+  defp insert(item, type) do
+    case Repo.insert(item) do
+      {:ok, item} ->
+        Logger.info("Inserted #{type} with id #{item.id}")
+
+      {:error, changeset} ->
+        Logger.error(
+          "Insertion of #{type} with id #{item.id} failed " <>
+            "with errors #{inspect(changeset.errors)}"
+        )
+    end
   end
 end

@@ -172,6 +172,7 @@ defmodule PYREx.OfficialsTest do
     import PYREx.OfficialsFixtures
 
     @invalid_attrs %{
+      person_id: nil,
       address: nil,
       class: nil,
       contact_form: nil,
@@ -201,6 +202,7 @@ defmodule PYREx.OfficialsTest do
 
     test "create_term/1 with valid data creates a term" do
       valid_attrs = %{
+        bioguide: "some bioguide",
         address: "some address",
         class: 42,
         contact_form: "some contact_form",
@@ -219,7 +221,7 @@ defmodule PYREx.OfficialsTest do
       }
 
       assert {:ok, %Term{} = term} = Officials.create_term(valid_attrs)
-      assert term.id == "some state:some type:some district:2022-06-25"
+      assert term.id == "some bioguide:2022-06-25"
       assert term.address == "some address"
       assert term.class == 42
       assert term.contact_form == "some contact_form"
@@ -245,6 +247,7 @@ defmodule PYREx.OfficialsTest do
       term = term_fixture()
 
       update_attrs = %{
+        bioguide: "some updated bioguide",
         address: "some updated address",
         class: 43,
         contact_form: "some updated contact_form",
@@ -263,8 +266,7 @@ defmodule PYREx.OfficialsTest do
       }
 
       assert {:ok, %Term{} = term} = Officials.update_term(term, update_attrs)
-      id = "some updated state:some updated type:some updated district:2022-06-26"
-      assert term.id == id
+      assert term.id == "some updated bioguide:2022-06-26"
       assert term.address == "some updated address"
       assert term.class == 43
       assert term.contact_form == "some updated contact_form"

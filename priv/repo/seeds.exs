@@ -11,3 +11,4 @@
 # and so on) as they will fail if something goes wrong.
 
 PYREx.Loader.shapes_and_jurisdictions()
+PYREx.Loader.us_legislators()

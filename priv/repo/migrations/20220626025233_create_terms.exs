@@ -4,6 +4,7 @@ defmodule PYREx.Repo.Migrations.CreateTerms do
   def change do
     create table(:terms, primary_key: false) do
       add :id, :string, primary_key: true
+      add :bioguide, :string
       add :type, :string
       add :start, :date
       add :end, :date
