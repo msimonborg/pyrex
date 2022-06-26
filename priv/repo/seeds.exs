@@ -12,3 +12,4 @@
 
 PYREx.Loader.shapes_and_jurisdictions()
 PYREx.Loader.us_legislators()
+PYREx.Loader.us_legislators_district_offices()

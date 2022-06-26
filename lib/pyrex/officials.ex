@@ -30,7 +30,7 @@ defmodule PYREx.Officials do
         where: t.current == true,
         join: j in subquery(jurisdictions_query),
         on: j.geoid == t.geoid,
-        join: o in assoc(p, :district_offices),
+        left_join: o in assoc(p, :district_offices),
         preload: [current_term: t, district_offices: o]
       )
 
