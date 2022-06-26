@@ -163,14 +163,14 @@ defmodule PYREx.Loader do
     |> Stream.run()
   end
 
-  defp insert(item, type) do
-    case Repo.insert(item) do
-      {:ok, item} ->
-        Logger.info("Inserted #{type} with id #{item.id}")
+  defp insert(changeset, type) do
+    case Repo.insert(changeset) do
+      {:ok, record} ->
+        Logger.info("Inserted #{type} with id #{record.id}")
 
       {:error, changeset} ->
         Logger.error(
-          "Insertion of #{type} with id #{item.id} failed " <>
+          "Insertion of #{type} with id #{changeset.changes.geoid} failed " <>
             "with errors #{inspect(changeset.errors)}"
         )
     end
