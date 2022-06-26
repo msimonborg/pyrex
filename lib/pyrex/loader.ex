@@ -32,13 +32,21 @@ defmodule PYREx.Loader do
   defp normalize_terms(terms, bioguide) do
     Enum.map(terms, fn term ->
       current = if term == List.last(terms), do: true, else: false
+      district = normalize_district(term["district"])
+      statefp = PYREx.FIPS.state_code(term["state"])
 
       term
       |> Map.put_new("current", current)
       |> Map.put_new("bioguide", bioguide)
-      |> Map.put_new("statefp", PYREx.FIPS.state_code(term["state"]))
-      |> Map.update("district", "at-large", &to_string/1)
+      |> Map.put_new("statefp", statefp)
+      |> Map.put_new("geoid", statefp <> district)
+      |> Map.update("district", "at-large", fn _ -> district end)
     end)
+  end
+
+  defp normalize_district(district) do
+    district = to_string(district)
+    if String.length(district) == 1, do: "0" <> district, else: district
   end
 
   def shapes_and_jurisdictions do

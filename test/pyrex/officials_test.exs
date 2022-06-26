@@ -178,6 +178,7 @@ defmodule PYREx.OfficialsTest do
       contact_form: nil,
       district: nil,
       end: nil,
+      geoid: nil,
       office: nil,
       party: nil,
       phone: nil,
@@ -209,6 +210,7 @@ defmodule PYREx.OfficialsTest do
         contact_form: "some contact_form",
         district: "some district",
         end: ~D[2022-06-25],
+        geoid: "some geoid",
         office: "some office",
         party: "some party",
         phone: "some phone",
@@ -229,6 +231,7 @@ defmodule PYREx.OfficialsTest do
       assert term.contact_form == "some contact_form"
       assert term.district == "some district"
       assert term.end == ~D[2022-06-25]
+      assert term.geoid == "some geoid"
       assert term.office == "some office"
       assert term.party == "some party"
       assert term.phone == "some phone"
@@ -256,6 +259,7 @@ defmodule PYREx.OfficialsTest do
         contact_form: "some updated contact_form",
         district: "some updated district",
         end: ~D[2022-06-26],
+        geoid: "some updated geoid",
         office: "some updated office",
         party: "some updated party",
         phone: "some updated phone",
@@ -276,6 +280,7 @@ defmodule PYREx.OfficialsTest do
       assert term.contact_form == "some updated contact_form"
       assert term.district == "some updated district"
       assert term.end == ~D[2022-06-26]
+      assert term.geoid == "some updated geoid"
       assert term.office == "some updated office"
       assert term.party == "some updated party"
       assert term.phone == "some updated phone"

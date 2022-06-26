@@ -17,6 +17,7 @@ defmodule PYREx.Officials.Term do
     field :current, :boolean
     field :district, :string
     field :end, :date
+    field :geoid, :string
     field :office, :string
     field :party, :string
     field :phone, :string
@@ -50,7 +51,8 @@ defmodule PYREx.Officials.Term do
     :office,
     :phone,
     :current,
-    :bioguide
+    :bioguide,
+    :geoid
   ]
 
   @required_fields [
@@ -61,7 +63,8 @@ defmodule PYREx.Officials.Term do
     :statefp,
     :current,
     :district,
-    :bioguide
+    :bioguide,
+    :geoid
   ]
 
   @doc false

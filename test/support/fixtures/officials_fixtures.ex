@@ -51,6 +51,7 @@ defmodule PYREx.OfficialsFixtures do
         contact_form: "some contact_form",
         district: "some district",
         end: ~D[2022-06-25],
+        geoid: "some geoid",
         office: "some office",
         party: "some party",
         phone: "some phone",
@@ -106,6 +107,7 @@ defmodule PYREx.OfficialsFixtures do
           "start" => "1993-01-05",
           "state" => "OH",
           "statefp" => "39",
+          "geoid" => "39",
           "type" => "rep"
         },
         %{
@@ -117,6 +119,7 @@ defmodule PYREx.OfficialsFixtures do
           "start" => "1995-01-04",
           "state" => "OH",
           "statefp" => "39",
+          "geoid" => "39",
           "type" => "rep"
         },
         %{
@@ -128,6 +131,7 @@ defmodule PYREx.OfficialsFixtures do
           "start" => "1997-01-07",
           "state" => "OH",
           "statefp" => "39",
+          "geoid" => "39",
           "type" => "rep"
         },
         %{
@@ -139,6 +143,7 @@ defmodule PYREx.OfficialsFixtures do
           "start" => "1999-01-06",
           "state" => "OH",
           "statefp" => "39",
+          "geoid" => "39",
           "type" => "rep"
         },
         %{
@@ -150,6 +155,7 @@ defmodule PYREx.OfficialsFixtures do
           "start" => "2001-01-03",
           "state" => "OH",
           "statefp" => "39",
+          "geoid" => "39",
           "type" => "rep"
         },
         %{
@@ -161,6 +167,7 @@ defmodule PYREx.OfficialsFixtures do
           "start" => "2003-01-07",
           "state" => "OH",
           "statefp" => "39",
+          "geoid" => "39",
           "type" => "rep",
           "url" => "http://www.house.gov/sherrodbrown"
         },
@@ -173,6 +180,7 @@ defmodule PYREx.OfficialsFixtures do
           "start" => "2005-01-04",
           "state" => "OH",
           "statefp" => "39",
+          "geoid" => "39",
           "type" => "rep",
           "url" => "http://www.house.gov/sherrodbrown"
         },
@@ -191,6 +199,7 @@ defmodule PYREx.OfficialsFixtures do
           "start" => "2007-01-04",
           "state" => "OH",
           "statefp" => "39",
+          "geoid" => "39",
           "type" => "sen",
           "url" => "http://brown.senate.gov/"
         },
@@ -210,6 +219,7 @@ defmodule PYREx.OfficialsFixtures do
           "start" => "2013-01-03",
           "state" => "OH",
           "statefp" => "39",
+          "geoid" => "39",
           "state_rank" => "senior",
           "type" => "sen",
           "url" => "https://www.brown.senate.gov"
@@ -229,6 +239,7 @@ defmodule PYREx.OfficialsFixtures do
           "start" => "2019-01-03",
           "state" => "OH",
           "statefp" => "39",
+          "geoid" => "39",
           "state_rank" => "senior",
           "type" => "sen",
           "url" => "https://www.brown.senate.gov"
