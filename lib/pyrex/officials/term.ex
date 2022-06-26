@@ -23,6 +23,7 @@ defmodule PYREx.Officials.Term do
     field :rss_url, :string
     field :start, :date
     field :state, :string
+    field :statefp, :string
     field :state_rank, :string
     field :type, :string
     field :url, :string
@@ -37,6 +38,7 @@ defmodule PYREx.Officials.Term do
     :start,
     :end,
     :state,
+    :statefp,
     :district,
     :class,
     :party,
@@ -56,6 +58,7 @@ defmodule PYREx.Officials.Term do
     :start,
     :end,
     :state,
+    :statefp,
     :current,
     :district,
     :bioguide

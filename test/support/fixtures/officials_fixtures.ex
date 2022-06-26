@@ -57,6 +57,7 @@ defmodule PYREx.OfficialsFixtures do
         rss_url: "some rss_url",
         start: ~D[2022-06-25],
         state: "some state",
+        statefp: "some statefp",
         state_rank: "some state_rank",
         type: "some type",
         url: "some url",
@@ -104,6 +105,7 @@ defmodule PYREx.OfficialsFixtures do
           "party" => "Democrat",
           "start" => "1993-01-05",
           "state" => "OH",
+          "statefp" => "39",
           "type" => "rep"
         },
         %{
@@ -114,6 +116,7 @@ defmodule PYREx.OfficialsFixtures do
           "party" => "Democrat",
           "start" => "1995-01-04",
           "state" => "OH",
+          "statefp" => "39",
           "type" => "rep"
         },
         %{
@@ -124,6 +127,7 @@ defmodule PYREx.OfficialsFixtures do
           "party" => "Democrat",
           "start" => "1997-01-07",
           "state" => "OH",
+          "statefp" => "39",
           "type" => "rep"
         },
         %{
@@ -134,6 +138,7 @@ defmodule PYREx.OfficialsFixtures do
           "party" => "Democrat",
           "start" => "1999-01-06",
           "state" => "OH",
+          "statefp" => "39",
           "type" => "rep"
         },
         %{
@@ -144,6 +149,7 @@ defmodule PYREx.OfficialsFixtures do
           "party" => "Democrat",
           "start" => "2001-01-03",
           "state" => "OH",
+          "statefp" => "39",
           "type" => "rep"
         },
         %{
@@ -154,6 +160,7 @@ defmodule PYREx.OfficialsFixtures do
           "party" => "Democrat",
           "start" => "2003-01-07",
           "state" => "OH",
+          "statefp" => "39",
           "type" => "rep",
           "url" => "http://www.house.gov/sherrodbrown"
         },
@@ -165,6 +172,7 @@ defmodule PYREx.OfficialsFixtures do
           "party" => "Democrat",
           "start" => "2005-01-04",
           "state" => "OH",
+          "statefp" => "39",
           "type" => "rep",
           "url" => "http://www.house.gov/sherrodbrown"
         },
@@ -182,6 +190,7 @@ defmodule PYREx.OfficialsFixtures do
           "phone" => "202-224-2315",
           "start" => "2007-01-04",
           "state" => "OH",
+          "statefp" => "39",
           "type" => "sen",
           "url" => "http://brown.senate.gov/"
         },
@@ -200,6 +209,7 @@ defmodule PYREx.OfficialsFixtures do
           "rss_url" => "http://www.brown.senate.gov/rss/feeds/?type=all&amp;",
           "start" => "2013-01-03",
           "state" => "OH",
+          "statefp" => "39",
           "state_rank" => "senior",
           "type" => "sen",
           "url" => "https://www.brown.senate.gov"
@@ -218,6 +228,7 @@ defmodule PYREx.OfficialsFixtures do
           "rss_url" => "http://www.brown.senate.gov/rss/feeds/?type=all&amp;",
           "start" => "2019-01-03",
           "state" => "OH",
+          "statefp" => "39",
           "state_rank" => "senior",
           "type" => "sen",
           "url" => "https://www.brown.senate.gov"

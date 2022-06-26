@@ -36,6 +36,7 @@ defmodule PYREx.Loader do
       term
       |> Map.put_new("current", current)
       |> Map.put_new("bioguide", bioguide)
+      |> Map.put_new("statefp", PYREx.FIPS.state_code(term["state"]))
       |> Map.update("district", "at-large", &to_string/1)
     end)
   end

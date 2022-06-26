@@ -1,5 +1,5 @@
 defmodule PYREx.OfficialsTest do
-  use PYREx.DataCase
+  use PYREx.DataCase, async: true
 
   alias PYREx.Officials
 
@@ -184,6 +184,7 @@ defmodule PYREx.OfficialsTest do
       rss_url: nil,
       start: nil,
       state: nil,
+      statefp: nil,
       state_rank: nil,
       type: nil,
       url: nil,
@@ -214,6 +215,7 @@ defmodule PYREx.OfficialsTest do
         rss_url: "some rss_url",
         start: ~D[2022-06-25],
         state: "some state",
+        statefp: "some statefp",
         state_rank: "some state_rank",
         type: "some type",
         url: "some url",
@@ -233,6 +235,7 @@ defmodule PYREx.OfficialsTest do
       assert term.rss_url == "some rss_url"
       assert term.start == ~D[2022-06-25]
       assert term.state == "some state"
+      assert term.statefp == "some statefp"
       assert term.state_rank == "some state_rank"
       assert term.type == "some type"
       assert term.url == "some url"
@@ -259,6 +262,7 @@ defmodule PYREx.OfficialsTest do
         rss_url: "some updated rss_url",
         start: ~D[2022-06-26],
         state: "some updated state",
+        statefp: "some updated statefp",
         state_rank: "some updated state_rank",
         type: "some updated type",
         url: "some updated url",
@@ -278,6 +282,7 @@ defmodule PYREx.OfficialsTest do
       assert term.rss_url == "some updated rss_url"
       assert term.start == ~D[2022-06-26]
       assert term.state == "some updated state"
+      assert term.statefp == "some updated statefp"
       assert term.state_rank == "some updated state_rank"
       assert term.type == "some updated type"
       assert term.url == "some updated url"
