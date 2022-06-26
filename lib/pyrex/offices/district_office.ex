@@ -1,4 +1,8 @@
 defmodule PYREx.Offices.DistrictOffice do
+  @moduledoc """
+  A schema for the district offices of elected officials.
+  """
+
   use PYREx.Schema
 
   import Ecto.Changeset
