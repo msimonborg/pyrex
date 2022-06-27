@@ -1,6 +1,8 @@
 # PYREx
 Phone Your Rep rewrite in Pheonix.
 
+See it in running in [production](pyrex.fly.dev).
+
 ## Stack
 
 * Elixir 1.13.4
@@ -23,7 +25,7 @@ Phone Your Rep rewrite in Pheonix.
 - [x] Geocode office locations
 - [ ] Sort offices by proximity to address
 - [x] Modules/workers to fetch, load, and periodically update data from external source
-- [ ] [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view) UI
+- [x] [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view) UI
 - [ ] GraphQL API using [Absinthe](https://github.com/absinthe-graphql/absinthe)
 
 To start your Phoenix server:
