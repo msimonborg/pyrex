@@ -37,6 +37,15 @@ defmodule PYRExWeb.AppLive do
   end
 
   @impl true
+
+  def handle_event("search", %{"search" => %{"lat" => lat, "lon" => lon}}, socket)
+      when byte_size(lat) > 0 and byte_size(lon) > 0 do
+    Logger.info("coordinates provided by Google Places API")
+
+    coordinates = %{lat: lat, lon: lon}
+    {:noreply, fetch_people_with_coordinates(socket, coordinates)}
+  end
+
   def handle_event("search", %{"search" => %{"address" => ""}}, socket) do
     {:noreply,
      socket
@@ -44,12 +53,12 @@ defmodule PYRExWeb.AppLive do
      |> redirect(to: "/")}
   end
 
-  def handle_event("search", %{"search" => search_params}, socket) do
-    case Geocodex.coordinates(search_params["address"]) do
+  def handle_event("search", %{"search" => %{"address" => address}}, socket) do
+    Logger.info("fetching coordinates from #{Geocodex.provider()}")
+
+    case Geocodex.coordinates(address) do
       {:ok, coordinates} ->
-        Logger.info("received coordinates: #{inspect(coordinates)}")
-        people = PYREx.Officials.list_current_people_for_location(coordinates)
-        {:noreply, assign(socket, :people, people)}
+        {:noreply, fetch_people_with_coordinates(socket, coordinates)}
 
       {:error, reason} ->
         Logger.error("error retrieving coordinates with reason #{inspect(reason)}")
@@ -59,5 +68,11 @@ defmodule PYRExWeb.AppLive do
          |> put_flash(:error, reason)
          |> redirect(to: "/")}
     end
+  end
+
+  defp fetch_people_with_coordinates(socket, %{lat: _, lon: _} = coordinates) do
+    Logger.info("received coordinates: #{inspect(coordinates)}")
+    people = PYREx.Officials.list_current_people_for_location(coordinates)
+    assign(socket, :people, people)
   end
 end

@@ -50,5 +50,15 @@ liveSocket.connect()
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket
 
-let addressInput = document.getElementById('address-input')
-new google.maps.places.Autocomplete(addressInput, { fields: ["geometry.location"] });
+const addressInput = document.getElementById("address-input");
+const latInput = document.getElementById("lat-input")
+const lonInput = document.getElementById("lon-input")
+
+const autocomplete = new google.maps.places.Autocomplete(addressInput, { fields: ["geometry.location"], componentRestrictions: { country: ["us"] } });
+
+google.maps.event.addListener(autocomplete, "place_changed", function () {
+  var location = this.getPlace().geometry.location;
+  console.log(location)
+  latInput.value = location.lat();
+  lonInput.value = location.lng();
+});

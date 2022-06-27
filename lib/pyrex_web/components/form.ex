@@ -20,6 +20,8 @@ defmodule PYRExWeb.Components.Form do
           aria_describedby: "address-description",
           id: "address-input"
         ) %>
+        <%= hidden_input(@form, :lat, id: "lat-input") %>
+        <%= hidden_input(@form, :lon, id: "lon-input") %>
       </div>
       <p class="mt-2 text-sm text-gray-500" id="address-description">
         We don't save or sell or even look at your data!
