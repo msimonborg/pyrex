@@ -202,7 +202,7 @@ defmodule PYREx.Geographies do
   def intersecting_jurisdictions_query(geom) when is_struct(geom, Geo.Point) do
     from(j in Jurisdiction,
       join: s in assoc(j, :shape),
-      where: st_intersects(s.geom, ^geom)
+      where: st_contains(s.geom, ^geom)
     )
   end
 

@@ -8,7 +8,7 @@ defmodule PYRExWeb.Components.Form do
   def input(%{type: "address"} = assigns) do
     ~H"""
     <div>
-      <%= label(@form, :address, "Enter your street address",
+      <%= label(@form, :address, "Enter your full street address",
         class: "block text-sm font-medium text-gray-700"
       ) %>
       <div class="mt-1 relative rounded-md shadow-sm">
@@ -17,7 +17,8 @@ defmodule PYRExWeb.Components.Form do
             "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
           placeholder: "725 5th Ave, New York, NY 10022",
           aria_invalid: "true",
-          aria_describedby: "address-description"
+          aria_describedby: "address-description",
+          id: "address-input"
         ) %>
       </div>
       <p class="mt-2 text-sm text-gray-500" id="address-description">

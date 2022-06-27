@@ -41,7 +41,7 @@ defmodule PYRExWeb.AppLive do
     {:noreply,
      socket
      |> put_flash(:error, "please enter an address")
-     |> push_redirect(to: "/")}
+     |> redirect(to: "/")}
   end
 
   def handle_event("search", %{"search" => search_params}, socket) do
@@ -57,7 +57,7 @@ defmodule PYRExWeb.AppLive do
         {:noreply,
          socket
          |> put_flash(:error, reason)
-         |> push_redirect(to: "/")}
+         |> redirect(to: "/")}
     end
   end
 end

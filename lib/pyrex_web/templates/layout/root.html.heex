@@ -7,6 +7,7 @@
     <meta name="csrf-token" content={csrf_token_value()}>
     <%= live_title_tag assigns[:page_title] || "Phone Your Rep" %>
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcz2qKfmR-jFW2BJlUgz1MuMkm01twzBc&libraries=geometry,places"></script>
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
   <body class="h-full">
