@@ -7,6 +7,7 @@ defmodule PYREx.Application do
   def start(_type, _args) do
     children =
       [
+        {Cluster.Supervisor, [topologies(), [name: PYREx.ClusterSupervisor]]},
         # Start the RPC server before the DB
         {Fly.RPC, []},
         PYREx.Repo.Local,
@@ -31,5 +32,10 @@ defmodule PYREx.Application do
 
   defp add_data_updater_in_primary_region do
     if Fly.is_primary?(), do: [PYREx.DataUpdater], else: []
+  end
+
+  # libcluster clustering topologies
+  defp topologies do
+    Application.get_env(:libcluster, :topologies) || []
   end
 end
