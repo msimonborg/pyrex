@@ -97,6 +97,8 @@ defmodule PYRExWeb do
 
       import PYRExWeb.ErrorHelpers
       import PYRExWeb.Gettext
+
+      alias PYRExWeb.Components
       alias PYRExWeb.Router.Helpers, as: Routes
     end
   end

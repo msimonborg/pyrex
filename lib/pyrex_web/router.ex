@@ -30,7 +30,7 @@ defmodule PYRExWeb.Router do
   scope "/", PYRExWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    live "/", AppLive
   end
 
   # Other scopes may use custom stacks.

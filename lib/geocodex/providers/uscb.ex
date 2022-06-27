@@ -21,7 +21,7 @@ defmodule Geocodex.Providers.USCB do
 
     case coordinates do
       %{"x" => x, "y" => y} -> {:ok, %{lon: x, lat: y}}
-      nil -> {:error, :coordinates_not_found}
+      nil -> {:error, "address not found"}
     end
   end
 end
