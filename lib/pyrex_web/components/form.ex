@@ -8,7 +8,7 @@ defmodule PYRExWeb.Components.Form do
   def input(%{type: "address"} = assigns) do
     ~H"""
     <div id="search-form" phx-update="ignore">
-      <%= label(@form, :address, "Enter your full street address",
+      <%= label(@form, :address, "Enter your location",
         class: "block text-md font-medium text-gray-700"
       ) %>
       <div class="mt-1 relative rounded-md shadow-sm">
