@@ -20,11 +20,13 @@ if System.get_env("PHX_SERVER") do
   config :pyrex, PYRExWeb.Endpoint, server: true
 end
 
-google_places_api_key =
-  System.get_env("GOOGLE_PLACES_API_KEY") ||
-    raise("environment variable GOOGLE_PLACES_API_KEY is missing")
+unless config_env() == :test do
+  google_places_api_key =
+    System.get_env("GOOGLE_PLACES_API_KEY") ||
+      raise("environment variable GOOGLE_PLACES_API_KEY is missing")
 
-config :pyrex, :google_places_api_key, google_places_api_key
+  config :pyrex, :google_places_api_key, google_places_api_key
+end
 
 if config_env() == :prod do
   basic_auth_username =
