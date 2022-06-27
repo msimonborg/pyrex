@@ -119,7 +119,7 @@ defmodule PYRExWeb.Components.App do
     assigns = assign_new(assigns, :text_color, fn -> "white" end)
 
     ~H"""
-    <h2 class={"text-2xl text-#{@text_color} font-bold"}>Phone Your Rep</h2>
+    <h2 class={"text-3xl text-#{@text_color} font-bold"}>Phone Your Rep</h2>
     """
   end
 

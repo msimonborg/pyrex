@@ -71,7 +71,7 @@ defmodule PYRExWeb.Components.Lists do
     ~H"""
     <li
       x-data="{ show: false }"
-      x-init="setTimeout(function(){console.log(show = ! show);}, 100)"
+      x-init="setTimeout(function(){console.log(show = ! show);}, 50)"
       x-show="show"
       x-transition:enter="transition ease-out duration-300"
       x-transition:enter-start="opacity-0 scale-90"
@@ -84,7 +84,7 @@ defmodule PYRExWeb.Components.Lists do
       <div class="w-full flex items-center justify-between p-6 space-x-6">
         <div class="flex-1 truncate">
           <div class="flex items-center space-x-3">
-            <h3 class="text-gray-900 text-sm font-medium truncate"><%= @person.official_full %></h3>
+            <h3 class="text-gray-900 text-md font-medium truncate"><%= @person.official_full %></h3>
             <span class="flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full">
               <%= @badge %>
             </span>
@@ -112,7 +112,7 @@ defmodule PYRExWeb.Components.Lists do
           <div class="w-0 flex-1 flex">
             <a
               href={current_term.contact_form || current_term.url}
-              class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500"
+              class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-md text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500"
             >
               <Components.Icons.solid_link class="h-5 w-5 text-gray-400" />
               <span class="ml-3">Contact</span>
@@ -121,7 +121,7 @@ defmodule PYRExWeb.Components.Lists do
           <div class="-ml-px w-0 flex-1 flex">
             <a
               href={"tel:+1-#{@phone}"}
-              class="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500"
+              class="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-md text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500"
             >
               <Components.Icons.solid_phone class="h-5 w-5 text-gray-400" />
 
