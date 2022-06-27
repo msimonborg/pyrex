@@ -128,7 +128,7 @@ defmodule PYRExWeb.Components.App do
     <div class="flex-shrink-0 flex bg-gray-700 p-4">
       <div class="flex items-center">
         <div class="ml-3">
-          <p class="text-sm font-medium text-white">© Matthew Simon Borg</p>
+          <p class="text-sm font-medium text-white">© 2022 Matthew Simon Borg</p>
           <a
             href="https://github.com/msimonborg/pyrex/blob/main/LICENSE"
             class="text-xs font-medium text-gray-300 group-hover:text-gray-200"
