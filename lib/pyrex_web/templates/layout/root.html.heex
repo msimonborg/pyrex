@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu+Mono:wght@700&display=swap" rel="stylesheet">
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCcz2qKfmR-jFW2BJlUgz1MuMkm01twzBc&libraries=geometry,places"></script>
+    <script src={"https://maps.googleapis.com/maps/api/js?key=#{PYREx.config([:google_places_api_key])}&libraries=geometry,places"}></script>
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
   <body class="h-full">
