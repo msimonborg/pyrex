@@ -50,8 +50,6 @@ defmodule PYREx.Offices.DistrictOffice do
     :state,
     :statefp,
     :zip,
-    :lat,
-    :lon,
     :phone
   ]
 
@@ -67,11 +65,13 @@ defmodule PYREx.Offices.DistrictOffice do
     lat = Map.get(changeset.changes, :lat, changeset.data.lat)
     lon = Map.get(changeset.changes, :lon, changeset.data.lon)
 
-    if lat && lon do
-      coordinates = %{lat: lat, lon: lon}
-      change(changeset, geom: PYREx.Geometry.point(coordinates, PYREx.Shapefile.srid()))
-    else
-      changeset
-    end
+    point =
+      if lat && lon do
+        PYREx.Geometry.point(%{lat: lat, lon: lon}, PYREx.Shapefile.srid())
+      else
+        PYREx.Geometry.point(%{lat: 0.0, lon: 0.0}, PYREx.Shapefile.srid())
+      end
+
+    change(changeset, geom: point)
   end
 end

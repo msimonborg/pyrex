@@ -62,7 +62,7 @@ defmodule PYREx.Loader do
         |> Map.put("lat", office["latitude"])
         |> Map.put("lon", office["longitude"])
         |> Map.put("statefp", PYREx.FIPS.state_code(office["state"]))
-        |> PYREx.Offices.create_or_update_district_office!()
+        |> PYREx.Offices.create_district_office()
       end)
     end)
   end
