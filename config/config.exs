@@ -9,7 +9,8 @@ import Config
 
 config :pyrex,
   namespace: PYREx,
-  ecto_repos: [PYREx.Repo.Local]
+  ecto_repos: [PYREx.Repo.Local],
+  env: config_env()
 
 # Configures the endpoint
 config :pyrex, PYRExWeb.Endpoint,
