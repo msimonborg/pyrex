@@ -4,6 +4,8 @@ defmodule PYREx.Officials do
   """
 
   import Ecto.Query, warn: false
+  import Geo.PostGIS
+
   alias PYREx.Repo
 
   alias PYREx.Officials.Person
@@ -23,6 +25,7 @@ defmodule PYREx.Officials do
 
   def list_current_people_for_location(location) do
     jurisdictions_query = PYREx.Geographies.intersecting_jurisdictions_query(location)
+    point = PYREx.Geometry.point(location, PYREx.Shapefile.srid())
 
     query =
       from(p in Person,
@@ -31,6 +34,7 @@ defmodule PYREx.Officials do
         join: j in subquery(jurisdictions_query),
         on: j.geoid == t.geoid,
         left_join: o in assoc(p, :district_offices),
+        order_by: st_distancesphere(o.geom, ^point),
         preload: [current_term: t, district_offices: o]
       )
 
@@ -110,7 +114,7 @@ defmodule PYREx.Officials do
       nil -> %Person{}
       person -> person
     end
-    |> Person.changeset(attrs)
+    |> change_person(attrs)
     |> Repo.insert_or_update!()
   end
 

@@ -23,7 +23,7 @@ See it in running at https://pyrex.fly.dev
 - [x] Model reps and offices in database schema
 - [x] Fetch reps and offices by jurisdiction
 - [x] Geocode office locations
-- [ ] Sort offices by proximity to address
+- [x] Sort offices by proximity to address
 - [x] Modules/workers to fetch, load, and periodically update data from external source
 - [x] [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view) UI
 - [ ] GraphQL API using [Absinthe](https://github.com/absinthe-graphql/absinthe)

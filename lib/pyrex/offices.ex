@@ -74,6 +74,29 @@ defmodule PYREx.Offices do
   end
 
   @doc """
+  Creates or updates a district office based on the given ID.
+
+  Raises with invalid data.
+
+  ## Examples
+
+      iex> create_or_update_district_office!(%{field: value})
+      %DistrictOffice{}
+  """
+  def create_or_update_district_office!(attrs \\ %{}) do
+    id =
+      attrs[:id] || attrs["id"] ||
+        raise ArgumentError, "expected `id` attribute, got #{inspect(attrs)}"
+
+    case Repo.get(DistrictOffice, id) do
+      nil -> %DistrictOffice{}
+      district_office -> district_office
+    end
+    |> change_district_office(attrs)
+    |> Repo.insert_or_update!()
+  end
+
+  @doc """
   Deletes a district office.
 
   ## Examples

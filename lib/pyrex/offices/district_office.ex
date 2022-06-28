@@ -12,6 +12,7 @@ defmodule PYREx.Offices.DistrictOffice do
     field :building, :string
     field :city, :string
     field :fax, :string
+    field :geom, Geo.PostGIS.Geometry
     field :hours, :string
     field :lat, :float
     field :lon, :float
@@ -59,5 +60,18 @@ defmodule PYREx.Offices.DistrictOffice do
     district_office
     |> cast(attrs, @cast_fields)
     |> validate_required(@required_fields)
+    |> project_point()
+  end
+
+  defp project_point(changeset) do
+    lat = Map.get(changeset.changes, :lat, changeset.data.lat)
+    lon = Map.get(changeset.changes, :lon, changeset.data.lon)
+
+    if lat && lon do
+      coordinates = %{lat: lat, lon: lon}
+      change(changeset, geom: PYREx.Geometry.point(coordinates, PYREx.Shapefile.srid()))
+    else
+      changeset
+    end
   end
 end

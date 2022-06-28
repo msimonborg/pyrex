@@ -81,8 +81,9 @@ defmodule PYREx.Geographies do
 
   @doc """
   Returns a list of shapes that intersect the given geometry.
-  Input can be a tuple containing two strings or floats (lat and lon), a binary
-  street address, or a Geo struct.
+
+  Input must be a map with keys `:lat` and `:lon` and string
+  or float values or a Geo.Point struct.
   """
   def intersecting_shapes(location) do
     location
@@ -94,9 +95,9 @@ defmodule PYREx.Geographies do
     from(s in Shape, where: st_intersects(s.geom, ^geom))
   end
 
-  def intersecting_shapes_query(location) do
+  def intersecting_shapes_query(%{} = location) do
     location
-    |> normalize_location()
+    |> PYREx.Geometry.point(PYREx.Shapefile.srid())
     |> intersecting_shapes_query()
   end
 
@@ -174,9 +175,12 @@ defmodule PYREx.Geographies do
   end
 
   @doc """
-  Returns a list of Jursidictions whose shapes intersect the given geometry.
-  Input can be a map with keys `:lat` and `:lon` and string or float values,
-  a string street address, or a Geo struct.
+  Returns a list of Jursidictions whose shapes intersect the
+  given geometry.
+
+  Input must be a map with keys `:lat` and `:lon` and string or
+  float values or a Geo.Point struct.
+
   ## Examples
       intersecting_jurisdictions(%{lat: 33.184123, lon: -88.317135})
       #=> [%PYREx.Geographies.Jurisdiction{
@@ -206,28 +210,9 @@ defmodule PYREx.Geographies do
     )
   end
 
-  def intersecting_jurisdictions_query(location) do
+  def intersecting_jurisdictions_query(%{} = location) do
     location
-    |> normalize_location()
+    |> PYREx.Geometry.point(PYREx.Shapefile.srid())
     |> intersecting_jurisdictions_query()
-  end
-
-  defp normalize_location(address) when is_binary(address) do
-    case Geocodex.coordinates(address) do
-      {:ok, coordinates} -> normalize_location(coordinates)
-      _ -> []
-    end
-  end
-
-  defp normalize_location(%{lat: lat, lon: lon} = coordinates)
-       when is_binary(lat) and is_binary(lon) do
-    coordinates
-    |> Map.new(fn {k, v} -> {k, String.to_float(v)} end)
-    |> normalize_location()
-  end
-
-  defp normalize_location(%{lat: lat, lon: lon})
-       when is_number(lat) and is_number(lon) do
-    %Geo.Point{coordinates: {lat, lon}, srid: PYREx.Shapefile.srid()}
   end
 end

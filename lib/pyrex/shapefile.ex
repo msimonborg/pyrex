@@ -101,7 +101,7 @@ defmodule PYREx.Shapefile do
         {42.737071, -96.639704},
         {42.741002, -96.635886},
         {42.745641, -96.632314}
-      ]]], srid: 3857}
+      ]]], srid: 4269}
   """
   def exshape_to_geo(%Exshape.Shp.Polygon{points: polygons}) do
     coordinates =
@@ -117,10 +117,10 @@ defmodule PYREx.Shapefile do
   end
 
   @doc """
-  The SRID projection used by the application. Returns the integer value `3857`.
+  The SRID projection used by the application. Returns the integer value `4269`.
   ## Examples
       iex> PYREx.Shapefile.srid()
-      3857
+      4269
   """
-  def srid, do: 3857
+  def srid, do: 4269
 end
