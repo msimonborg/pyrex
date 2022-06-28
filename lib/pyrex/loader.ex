@@ -33,7 +33,7 @@ defmodule PYREx.Loader do
     Enum.map(terms, fn term ->
       current = if term == List.last(terms), do: true, else: false
       district = normalize_district(term["district"])
-      statefp = PYREx.FIPS.state_code(term["state"])
+      statefp = PYREx.FIPS.state_code!(term["state"])
 
       term
       |> Map.put_new("current", current)
@@ -61,7 +61,7 @@ defmodule PYREx.Loader do
         |> Map.put("person_id", bioguide)
         |> Map.put("lat", office["latitude"])
         |> Map.put("lon", office["longitude"])
-        |> Map.put("statefp", PYREx.FIPS.state_code(office["state"]))
+        |> Map.put("statefp", PYREx.FIPS.state_code!(office["state"]))
         |> PYREx.Offices.create_district_office()
       end)
     end)

@@ -66,24 +66,54 @@ defmodule PYREx.FIPS do
     "WY" => "56"
   }
 
-  @doc """
-  Returns the two digit FIPS code for the given state abbreviation.
+  @type state_abbr :: String.t()
+  @type statefp :: String.t()
 
-  Returns nil if no code exists for the given argument.
+  @doc """
+  Fetch the two digit `statefp` (FIPS code) for the given state abbreviation.
+
+  Returns `{:ok, statefp}` on success, or `:error` if no code exists for the
+  given argument.
 
   ## Examples
 
       iex> PYREx.FIPS.state_code("VT")
-      "50"
+      {:ok, "50"}
 
       iex> PYREx.FIPS.state_code("CA")
-      "06"
+      {:ok, "06"}
 
       iex> PYREx.FIPS.state_code("MP")
-      "69"
+      {:ok, "69"}
 
       iex> PYREx.FIPS.state_code("XY")
-      nil
+      :error
   """
-  def state_code(state_abbr) when is_binary(state_abbr), do: @state_codes[state_abbr]
+  @spec state_code(state_abbr) :: {:ok, statefp} | :error
+  def state_code(state_abbr) when is_binary(state_abbr), do: Map.fetch(@state_codes, state_abbr)
+
+  @doc """
+  Fetch the two digit `statefp` (FIPS code) for the given state abbreviation.
+
+  Returns `statefp` on success, raises an `ArgumentError` if no code exists for the
+  given argument. See `state_abbrs` for valid arguments.
+  """
+  @spec state_code!(state_abbr) :: statefp
+  def state_code!(state_abbr) when is_binary(state_abbr) do
+    case state_code(state_abbr) do
+      {:ok, statefp} ->
+        statefp
+
+      :error ->
+        raise ArgumentError,
+              "expected `state_abbr` to be one of `PYREx.FIPS.state_abbrs/0`," <>
+                " got #{inspect(state_abbr)}"
+    end
+  end
+
+  @doc """
+  Returns a list of the valid `state_abbr` arguments for `state_code/1` and `state_code!/1`.
+  """
+  @spec state_abbrs :: [state_abbr]
+  def state_abbrs, do: Map.keys(@state_codes)
 end
