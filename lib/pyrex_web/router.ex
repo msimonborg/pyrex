@@ -8,6 +8,15 @@ defmodule PYRExWeb.Router do
     Plug.BasicAuth.basic_auth(conn, credentials)
   end
 
+  defp redirect_from_fly_host(conn, _) do
+    host = PYREx.config([PYRExWeb.Endpoint, :url, :host])
+
+    case conn.host do
+      ^host -> conn
+      _ -> redirect(conn, external: "https://" <> host)
+    end
+  end
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -15,6 +24,7 @@ defmodule PYRExWeb.Router do
     plug :put_root_layout, {PYRExWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :redirect_from_fly_host
   end
 
   pipeline :api do
