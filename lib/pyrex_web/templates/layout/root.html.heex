@@ -12,8 +12,8 @@
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
     <script src={"https://maps.googleapis.com/maps/api/js?key=#{PYREx.config([:google_places_api_key])}&libraries=geometry,places"}></script>
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
-    <%= if PYREx.config([:env]) == :prod do %>
-      <script defer data-domain="phoneyourrep.org" src="https://plausible.io/js/plausible.js"></script>
+    <%= if PYREx.config([PYRExWeb, :plausible_analytics]) do %>
+      <script defer data-domain={PYREx.config([PYRExWeb.Endpoint, :url, :host])} src="https://plausible.io/js/plausible.js"></script>
     <% end %>
   </head>
   <body class="h-full">
