@@ -93,20 +93,22 @@ defmodule PYRExWeb.Components.Lists do
       <div class="w-full flex items-center justify-between p-6 space-x-6">
         <div class="flex-1 truncate">
           <div class="flex items-center space-x-3">
-            <h3 class="text-gray-900 text-md font-medium truncate"><%= @person.official_full %></h3>
-            <span class="flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-xs font-medium bg-green-100 rounded-full">
+            <h3 class="text-gray-900 text-lg md:text-base font-medium truncate">
+              <%= @person.official_full %>
+            </h3>
+            <span class="flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-sm md:text-xs font-medium bg-green-100 rounded-full">
               <%= @badge %>
             </span>
           </div>
 
           <div class="h-12">
-            <p class="mt-1 text-gray-500 text-sm whitespace-normal">
+            <p class="mt-1 text-gray-500 text-base md:text-sm whitespace-normal">
               <%= @short_name %>
             </p>
             <button
               type="button"
               @click="modalOpen = ! modalOpen"
-              class="mt-1 text-indigo-500 text-sm"
+              class="mt-1 text-indigo-500 text-base md:text-sm"
             >
               View office details
             </button>
@@ -119,7 +121,7 @@ defmodule PYRExWeb.Components.Lists do
           <div class="w-0 flex-1 flex">
             <a
               href={current_term.contact_form || current_term.url}
-              class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-md text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500"
+              class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-lg md:text-base text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500"
             >
               <Components.Icons.solid_link class="h-5 w-5 text-gray-400" />
               <span class="ml-3">Contact</span>
@@ -128,7 +130,7 @@ defmodule PYRExWeb.Components.Lists do
           <div class="-ml-px w-0 flex-1 flex">
             <a
               href={"tel:+1-#{@phone}"}
-              class="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-md text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500"
+              class="relative w-0 flex-1 inline-flex items-center justify-center py-4 text-lg md:text-base text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500"
             >
               <Components.Icons.solid_phone class="h-5 w-5 text-gray-400" />
 
@@ -208,11 +210,11 @@ defmodule PYRExWeb.Components.Lists do
                 <img class="w-11 h-13 bg-gray-300 rounded-md" src={@photo_url} alt="" />
               </div>
               <div class="mt-3 text-center sm:mt-5">
-                <h3 class="text-lg leading-6 font-medium text-gray-900" id={@id}>
+                <h3 class="text-xl md:text-lg leading-6 font-medium text-gray-900" id={@id}>
                   <%= @person.official_full %>
                 </h3>
                 <div class="mt-2">
-                  <p class="text-sm text-gray-500 whitespace-normal">
+                  <p class="text-base md:text-sm text-gray-500 whitespace-normal">
                     <%= @address %>
                   </p>
                 </div>
@@ -222,7 +224,7 @@ defmodule PYRExWeb.Components.Lists do
               <a href={"tel:+1-#{@phone}"}>
                 <button
                   type="button"
-                  class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
+                  class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-lg md:text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
                 >
                   Call <%= @phone %>
                 </button>
