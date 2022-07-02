@@ -24,7 +24,11 @@ defmodule PYREx.Officials do
   end
 
   def list_current_people_for_location(location) do
-    jurisdictions_query = PYREx.Geographies.intersecting_jurisdictions_query(location)
+    jurisdictions_query =
+      location
+      |> PYREx.Geographies.intersecting_jurisdictions_query()
+      |> select([:id, :geoid])
+
     point = PYREx.Geometry.point(location, PYREx.Shapefile.srid())
 
     query =
