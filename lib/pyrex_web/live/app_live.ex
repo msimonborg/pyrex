@@ -19,6 +19,8 @@ defmodule PYRExWeb.AppLive do
         </Components.Form.button>
       </.form>
 
+      <button type="button" id="autocomplete-toggle">toggle</button>
+
       <ul role="list" class="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
         <%= for person <- @people do %>
           <Components.Lists.contact_card person={person} district_office={false} />
