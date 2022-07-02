@@ -173,4 +173,70 @@ defmodule PYRExWeb.Components.App do
     </nav>
     """
   end
+
+  def modal(assigns) do
+    ~H"""
+    <!-- This example requires Tailwind CSS v2.0+ -->
+    <div
+      x-show="modalOpen"
+      class="relative z-10"
+      aria-labelledby={@id}
+      role="dialog"
+      aria-modal="true"
+    >
+      <!-- Background backdrop, show/hide based on modal state. -->
+      <div
+        class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+        x-show="modalOpen"
+        x-transition:enter="ease-out duration-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="ease-in duration-200"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+      >
+      </div>
+
+      <div class="fixed z-10 inset-0 overflow-y-auto">
+        <div class="flex items-end sm:items-center justify-center min-h-full p-4 text-center sm:p-0">
+          <!-- Modal panel, show/hide based on modal state. -->
+          <div
+            x-show="modalOpen"
+            x-transition:enter="ease-out duration-300"
+            x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+            x-transition:leave="ease-in duration-300"
+            x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+            x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            class="relative bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-sm sm:w-full sm:p-6"
+          >
+            <div
+              x-show="modalOpen"
+              x-transition:enter="ease-in-out duration-300"
+              x-transition:enter-start="opacity-0"
+              x-transition:enter-end="opacity-100"
+              x-transition:leave="ease-in-out duration-300"
+              x-transition:leave-start="opacity-100"
+              x-transition:leave-end="opacity-0"
+              class="block absolute top-0 right-0 pt-4 pr-4"
+            >
+              <button
+                type="button"
+                class="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                @click="modalOpen = ! modalOpen"
+              >
+                <span class="sr-only">Close modal</span>
+                <!-- Heroicon name: outline/x -->
+                <Components.Icons.outline_x class="h-6 w-6" aria-hidden="true" />
+              </button>
+            </div>
+            <div id={@id}>
+              <%= render_slot(@inner_block) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    """
+  end
 end
