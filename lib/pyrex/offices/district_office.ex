@@ -7,6 +7,8 @@ defmodule PYREx.Offices.DistrictOffice do
 
   import Ecto.Changeset
 
+  alias PYREx.Repo
+
   schema "district_offices" do
     field :address, :string
     field :building, :string
@@ -58,6 +60,8 @@ defmodule PYREx.Offices.DistrictOffice do
     district_office
     |> cast(attrs, @cast_fields)
     |> validate_required(@required_fields)
+    |> unique_constraint(:id, name: "district_offices_pkey")
+    |> unsafe_validate_unique([:id], Repo)
     |> project_point()
   end
 
