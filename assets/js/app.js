@@ -78,7 +78,7 @@ let disableAutocomplete = function () {
 let enableAutocomplete = function () {
   let autocomplete = new google.maps.places.Autocomplete(addressInput, { fields: ["geometry.location"], componentRestrictions: { country: ["us"] } })
   google.maps.event.addListener(autocomplete, "place_changed", function () {
-    var location = this.getPlace().geometry.location
+    let location = this.getPlace().geometry.location
     console.log(location)
     latInput.value = location.lat()
     lonInput.value = location.lng()
