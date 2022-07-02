@@ -17,6 +17,8 @@
     <% end %>
   </head>
   <body class="h-full">
-    <%= @inner_content %>
+    <Components.App.layout {assigns}>
+      <%= @inner_content %>
+    </Components.App.layout>
   </body>
 </html>

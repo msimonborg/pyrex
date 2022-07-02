@@ -10,26 +10,58 @@ defmodule PYRExWeb.AppLive do
   @impl true
   def render(assigns) do
     ~H"""
-    <Components.App.layout>
-      <.form let={f} for={:search} phx-submit="search">
-        <Components.Form.input form={f} type="address" />
-        <div class="m-6" />
-        <Components.Form.button type="submit">
-          Search <Components.Icons.solid_search class="ml-3 -mr-1 h-5 w-5" />
-        </Components.Form.button>
-      </.form>
+    <.form let={f} for={:search} phx-submit="search">
+      <Components.Form.input form={f} type="address" {assigns} />
+      <Components.Form.toggle id="autocomplete-toggle">
+        <.autocomplete_toggle_label {assigns} />
+      </Components.Form.toggle>
+      <div class="m-6" />
+      <Components.Form.button type="submit">
+        Search <Components.Icons.solid_search class="ml-3 -mr-1 h-5 w-5" />
+      </Components.Form.button>
+    </.form>
 
-      <button type="button" id="autocomplete-toggle">toggle</button>
-
-      <ul role="list" class="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
-        <%= for person <- @people do %>
-          <Components.Lists.contact_card person={person} district_office={false} />
-          <%= for office <- person.district_offices do %>
-            <Components.Lists.contact_card person={person} district_office={office} />
-          <% end %>
+    <ul role="list" class="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
+      <%= for person <- @people do %>
+        <Components.Lists.contact_card person={person} district_office={false} />
+        <%= for office <- person.district_offices do %>
+          <Components.Lists.contact_card person={person} district_office={office} />
         <% end %>
-      </ul>
-    </Components.App.layout>
+      <% end %>
+    </ul>
+    """
+  end
+
+  defp autocomplete_toggle_label(assigns) do
+    ~H"""
+    <div x-data="{ modalOpen: false }" class="flex inline-flex space-x-2">
+      <span>Toggle off to disable Google address autocomplete</span>
+      <button @click="modalOpen = ! modalOpen" type="button">
+        <Components.Icons.solid_question_mark_circle />
+      </button>
+      <Components.App.modal id="toggle-autocomplete-help">
+        <div class="p-2 text-base space-y-2">
+          <p>
+            Toggles the Google Maps address autocomplete on and off.
+          </p>
+          <p>
+            If you do not use autocomplete
+            you must manually enter a fully qualified and valid address.
+          </p>
+          <p>
+            See our
+            <a
+              class="text-indigo-500 hover:text-indigo-700"
+              target="_blank"
+              href={Routes.privacy_policy_path(@socket, :index)}
+            >
+              Privacy Policy
+            </a>
+            for more information regarding usage of this feature.
+          </p>
+        </div>
+      </Components.App.modal>
+    </div>
     """
   end
 
