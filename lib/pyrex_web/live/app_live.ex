@@ -34,8 +34,8 @@ defmodule PYRExWeb.AppLive do
 
   defp autocomplete_toggle_label(assigns) do
     ~H"""
-    <div x-data="{ modalOpen: false }" class="flex inline-flex space-x-2">
-      <span>Toggle off to disable Google address autocomplete</span>
+    <div x-data="{ modalOpen: false }" class="flex inline-flex align-middle space-x-2">
+      <span class="text-xs sm:text-sm">Toggle to disable Google address autocomplete</span>
       <button @click="modalOpen = ! modalOpen" type="button">
         <Components.Icons.solid_question_mark_circle />
       </button>
