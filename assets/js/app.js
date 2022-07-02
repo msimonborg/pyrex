@@ -50,15 +50,39 @@ liveSocket.connect()
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket
 
-const addressInput = document.getElementById("address-input");
-const latInput = document.getElementById("lat-input")
-const lonInput = document.getElementById("lon-input")
+let latInput = document.getElementById("lat-input")
+let lonInput = document.getElementById("lon-input")
+let addressInput = document.getElementById("address-input")
+let autocompleteToggle = document.getElementById("autocomplete-toggle")
 
-const autocomplete = new google.maps.places.Autocomplete(addressInput, { fields: ["geometry.location"], componentRestrictions: { country: ["us"] } });
+let autocompleteEnabled = true
 
-google.maps.event.addListener(autocomplete, "place_changed", function () {
-  var location = this.getPlace().geometry.location;
-  console.log(location)
-  latInput.value = location.lat();
-  lonInput.value = location.lng();
-});
+autocompleteToggle.onclick = function () {
+  autocompleteEnabled = !autocompleteEnabled
+
+  if (autocompleteEnabled) {
+    console.log("autocomplete enabled")
+    enableAutocomplete()
+  } else {
+    console.log("autocomplete disabled")
+    disableAutocomplete()
+  }
+}
+
+let disableAutocomplete = function () {
+  google.maps.event.clearInstanceListeners(addressInput)
+  latInput.value = ""
+  lonInput.value = ""
+}
+
+let enableAutocomplete = function () {
+  let autocomplete = new google.maps.places.Autocomplete(addressInput, { fields: ["geometry.location"], componentRestrictions: { country: ["us"] } })
+  google.maps.event.addListener(autocomplete, "place_changed", function () {
+    var location = this.getPlace().geometry.location
+    console.log(location)
+    latInput.value = location.lat()
+    lonInput.value = location.lng()
+  })
+}
+
+enableAutocomplete()
