@@ -58,10 +58,7 @@ defmodule PYRExWeb.Components.App do
             </div>
 
             <div class="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
-              <div class="flex-shrink-0 flex items-center px-4">
-                <.logo />
-              </div>
-              <.nav type="mobile" />
+              <.nav type="mobile" {assigns} />
             </div>
             <.copyright />
           </div>
@@ -76,10 +73,7 @@ defmodule PYRExWeb.Components.App do
         <!-- Sidebar component, swap this element with another sidebar if you like -->
         <div class="flex-1 flex flex-col min-h-0 bg-gray-800">
           <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
-            <div class="flex items-center flex-shrink-0 px-4">
-              <.logo />
-            </div>
-            <.nav type="desktop" />
+            <.nav type="desktop" {assigns} />
           </div>
           <.copyright />
         </div>
@@ -143,6 +137,9 @@ defmodule PYRExWeb.Components.App do
 
   def nav(assigns) do
     ~H"""
+    <a href="/" class="flex flex-shrink-0 items-center px-4">
+      <.logo />
+    </a>
     <nav class="mt-5 flex-1 px-2 space-y-1">
       <a
         href="https://github.com/msimonborg/pyrex"
@@ -170,6 +167,13 @@ defmodule PYRExWeb.Components.App do
         <Components.Icons.outline_credit_card class="text-gray-400 group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6" />
         Support
       </a>
+      <a
+        href={Routes.privacy_policy_path(@conn, :index)}
+        class="text-gray-300 hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base font-medium rounded-md"
+      >
+        <Components.Icons.outline_eye_off class="text-gray-400 group-hover:text-gray-300 mr-4 flex-shrink-0 h-6 w-6" />
+        Privacy Policy
+      </a>
     </nav>
     """
   end
@@ -181,6 +185,7 @@ defmodule PYRExWeb.Components.App do
       x-show="modalOpen"
       class="relative z-10"
       aria-labelledby={@id}
+      :aria-hidden="!modalOpen"
       role="dialog"
       aria-modal="true"
     >
@@ -226,8 +231,7 @@ defmodule PYRExWeb.Components.App do
                 @click="modalOpen = ! modalOpen"
               >
                 <span class="sr-only">Close modal</span>
-                <!-- Heroicon name: outline/x -->
-                <Components.Icons.outline_x class="h-6 w-6" aria-hidden="true" />
+                <Components.Icons.outline_x class="h-6 w-6" :aria-hidden="!modalOpen" />
               </button>
             </div>
             <div id={@id}>

@@ -43,6 +43,8 @@ defmodule PYRExWeb.Router do
     pipe_through :browser
 
     live "/", AppLive
+
+    get "/privacy-policy", PrivacyPolicyController, :index
   end
 
   # Other scopes may use custom stacks.
