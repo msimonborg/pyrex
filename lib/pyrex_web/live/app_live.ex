@@ -52,7 +52,6 @@ defmodule PYRExWeb.AppLive do
             See our
             <a
               class="text-indigo-500 hover:text-indigo-700"
-              target="_blank"
               href={Routes.privacy_policy_path(@socket, :index)}
             >
               Privacy Policy
