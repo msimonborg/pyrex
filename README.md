@@ -1,7 +1,7 @@
 # PYREx
 Phone Your Rep rewrite in Pheonix.
 
-See it in running at https://phoneyourrep.org
+See it in production at https://phoneyourrep.org
 
 ## Stack
 
