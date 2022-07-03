@@ -26,6 +26,8 @@ See it in running at https://pyrex.fly.dev
 - [x] Sort offices by proximity to address
 - [x] Modules/workers to fetch, load, and periodically update data from external source
 - [x] [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view) UI
+- [ ] VCard (.vcf) downloads for legislator office contacts
+- [ ] QR Codes for VCard download URLs, or directly encoding .vcf file contents
 - [ ] GraphQL API using [Absinthe](https://github.com/absinthe-graphql/absinthe)
 
 ## Development
