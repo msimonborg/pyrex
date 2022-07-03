@@ -41,7 +41,9 @@ defmodule PYRExWeb.Components.Lists do
             <h3 class="text-gray-900 text-lg md:text-base font-medium truncate">
               <%= @person.official_full %>
             </h3>
-            <span class="flex-shrink-0 inline-block px-2 py-0.5 text-green-800 text-sm md:text-xs font-medium bg-green-100 rounded-full">
+            <span class={
+              "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-#{@badge_color}-100 text-#{@badge_color}-800"
+            }>
               <%= @badge %>
             </span>
           </div>
@@ -91,6 +93,9 @@ defmodule PYRExWeb.Components.Lists do
               <%= @person.official_full %>
             </h3>
             <p class="text-base md:text-sm text-gray-500 whitespace-normal">
+              <%= @person.current_term.party %>
+            </p>
+            <p class="text-base md:text-sm text-gray-500 whitespace-normal">
               <%= @role %>
             </p>
             <div class="mt-2">
@@ -129,7 +134,15 @@ defmodule PYRExWeb.Components.Lists do
 
   defp assign_badge(assigns, current_term) do
     badge = if current_term.type == "sen", do: "senate", else: "house"
-    assign(assigns, :badge, badge)
+
+    badge_color =
+      case current_term.party do
+        "Republican" -> "red"
+        "Democrat" -> "blue"
+        _ -> "yellow"
+      end
+
+    assign(assigns, badge: badge, badge_color: badge_color)
   end
 
   defp assign_hours(assigns, district_office) do
