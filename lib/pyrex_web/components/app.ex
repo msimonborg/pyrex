@@ -182,6 +182,7 @@ defmodule PYRExWeb.Components.App do
     ~H"""
     <!-- This example requires Tailwind CSS v2.0+ -->
     <div
+      x-cloak
       x-show="modalOpen"
       class="relative z-10"
       aria-labelledby={@id}

@@ -37,7 +37,7 @@ defmodule PYRExWeb.Components.Form do
 
   def toggle(assigns) do
     ~H"""
-    <div x-data="{ enabled: true }" class="mt-2 flex items-center">
+    <div x-cloak x-data="{ enabled: true }" class="mt-2 flex items-center">
       <button
         type="button"
         id={@id}
