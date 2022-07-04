@@ -36,8 +36,8 @@ See it in production at https://phoneyourrep.org
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
-  * Add a valid Google Places API key to your environment as the environment variable `GOOGLE_PLACES_API_KEY`. I recommend using a special key just for development that is restricted to the HTTP referrer `localhost:4000/*` and is never checked into version control.
-  * Setup your database with `mix ecto.setup`. This will attempt to enable a PostGIS geometric database, download Census Bureau shapefiles for U.S. Congressional and State districts, and load them into your database. If this fails it may be because you do not have PostGIS installed. I recommend Postgres >14.4, PostGIS >3.2. If you're on macOS, the easiest way to install this correctly so it Just Works is with [Postgres.app](https://postgresapp.com/). The database setup will also fetch and load legislator data. The total data size is about 500 MB.
+  * Add a valid Google Places API key to your environment as the environment variable `GOOGLE_PLACES_API_KEY`. I recommend using a special key just for development that is restricted to the HTTP referrer `localhost:4000/*` and is never checked into version control. If you do not want to use an API key in development then you can set a dummy value (e.g. `export GOOGLE_PLACES_API_KEY="no_key"`), and rely on manually entering valid U.S. addresses.
+  * Setup your database with `mix ecto.setup`. This will attempt to enable a PostGIS geometric database, download Census Bureau shapefiles for U.S. States, Congressional districts, and State Legislatures, and load them into your database. If this fails it may be because you do not have PostGIS installed. I recommend Postgres >14.4, PostGIS >3.2. If you're on macOS, the easiest way to install this correctly so it Just Works is with [Postgres.app](https://postgresapp.com/). The database setup will also fetch and load legislator data (currently only U.S. Senators and Representatives). The total data size is about 500 MB.
   * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
@@ -48,7 +48,7 @@ If you'd like to view the Pheonix LiveDashboard in development it can be found a
 
 This is a free, open-source project made by one creator, hopefully with help from volunteer contributors. The cost of running the servers is directly related to how many people use this app. There is also a cost incurred for every usage of the Google Places Autocomplete widget that helps you look up your address. If you enjoy using this tool and want to see it succeed, your support helps fund those costs.
 
-[https://www.patreon.com/we_dle](https://www.patreon.com/msimonborg)
+[https://www.patreon.com/msimonborg](https://www.patreon.com/msimonborg)
 
 ## [License](LICENSE)
 
