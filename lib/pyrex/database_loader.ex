@@ -1,4 +1,4 @@
-defmodule Pyrex.Loader do
+defmodule Pyrex.DatabaseLoader do
   # credo:disable-for-this-file
   require Logger
   alias Pyrex.{Repo, Shapefile, Sources}

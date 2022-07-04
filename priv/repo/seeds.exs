@@ -9,7 +9,8 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+alias Pyrex.DatabaseLoader
 
-Pyrex.Loader.shapes_and_jurisdictions()
-Pyrex.Loader.us_legislators()
-Pyrex.Loader.us_legislators_district_offices()
+DatabaseLoader.shapes_and_jurisdictions()
+DatabaseLoader.us_legislators()
+DatabaseLoader.us_legislators_district_offices()

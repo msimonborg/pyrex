@@ -16,7 +16,7 @@ defmodule Pyrex.Application do
         PyrexWeb.Telemetry,
         {Phoenix.PubSub, name: Pyrex.PubSub},
         PyrexWeb.Endpoint
-      ] ++ add_data_updater_in_primary_region()
+      ] ++ add_database_updater_in_primary_region()
 
     opts = [strategy: :one_for_one, name: Pyrex.Supervisor]
     Supervisor.start_link(children, opts)
@@ -30,8 +30,8 @@ defmodule Pyrex.Application do
     :ok
   end
 
-  defp add_data_updater_in_primary_region do
-    if Fly.is_primary?(), do: [Pyrex.DataUpdater], else: []
+  defp add_database_updater_in_primary_region do
+    if Fly.is_primary?(), do: [Pyrex.DatabaseUpdater], else: []
   end
 
   # libcluster clustering topologies

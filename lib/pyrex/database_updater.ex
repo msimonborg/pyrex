@@ -1,10 +1,12 @@
-defmodule Pyrex.DataUpdater do
+defmodule Pyrex.DatabaseUpdater do
   @moduledoc """
   A GenServer that periodically updates the database with fresh
   legislator data.
   """
 
   use GenServer
+
+  alias Pyrex.DatabaseLoader
 
   @doc false
   def start_link(_) do
@@ -28,8 +30,8 @@ defmodule Pyrex.DataUpdater do
   end
 
   def handle_info(:update, state) do
-    Pyrex.Loader.us_legislators()
-    Pyrex.Loader.us_legislators_district_offices()
+    DatabaseLoader.us_legislators()
+    DatabaseLoader.us_legislators_district_offices()
     {:noreply, state}
   end
 end

@@ -41,7 +41,7 @@ defmodule Pyrex.Shapefile do
   end
 
   defp random_string do
-    :crypto.strong_rand_bytes(32) |> Base.url_encode64() |> binary_part(0, 32)
+    :crypto.strong_rand_bytes(32) |> Base.url_encode64()
   end
 
   @doc """
