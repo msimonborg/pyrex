@@ -68,97 +68,25 @@ defmodule Pyrex.DatabaseLoader do
   end
 
   def shapes_and_jurisdictions do
-    shapefiles = Sources.shapefiles!()
-    congress = shapefiles["congress"]
-    states = shapefiles["states"]
-    sldl = shapefiles["state_legislative_districts_lower"]
-    sldu = shapefiles["state_legislative_districts_upper"]
-
-    congress_tasks =
-      Enum.map(congress["filenames"], fn filename ->
+    Enum.flat_map(Sources.shapefiles!(), fn {group_name, data} ->
+      Enum.map(data["filenames"], fn filename ->
         fn ->
           filename
-          |> Shapefile.map_download(congress["base_url"])
+          |> Shapefile.map_download(data["base_url"])
           |> Enum.each(fn shape ->
-            Shape.changeset(%Shape{}, shape)
+            %Shape{}
+            |> Shape.changeset(shape)
             |> insert(:shape)
 
-            jurisdiction =
-              shape
-              |> Map.drop([:geom])
-              |> Map.put(:name, shape.namelsad)
-              |> Map.put(:type, "us_cd")
+            jurisdiction = build_jurisdiction_for(group_name, shape)
 
-            Jurisdiction.changeset(%Jurisdiction{}, jurisdiction)
+            %Jurisdiction{}
+            |> Jurisdiction.changeset(jurisdiction)
             |> insert(:jurisdiction)
           end)
         end
       end)
-
-    states_tasks =
-      Enum.map(states["filenames"], fn filename ->
-        fn ->
-          filename
-          |> Shapefile.map_download(states["base_url"])
-          |> Enum.map(fn shape ->
-            Shape.changeset(%Shape{}, shape)
-            |> insert(:shape)
-
-            jurisdiction =
-              shape
-              |> Map.drop([:geom])
-              |> Map.put(:type, "us_state")
-
-            Jurisdiction.changeset(%Jurisdiction{}, jurisdiction)
-            |> insert(:jurisdiction)
-          end)
-        end
-      end)
-
-    sldl_tasks =
-      Enum.map(sldl["filenames"], fn filename ->
-        fn ->
-          filename
-          |> Shapefile.map_download(sldl["base_url"])
-          |> Enum.each(fn shape ->
-            Shape.changeset(%Shape{}, shape)
-            |> insert(:shape)
-
-            jurisdiction =
-              shape
-              |> Map.drop([:geom])
-              |> Map.put(:name, shape.namelsad)
-              |> Map.put(:type, "us_sldl")
-
-            Jurisdiction.changeset(%Jurisdiction{}, jurisdiction)
-            |> insert(:jurisdiction)
-          end)
-        end
-      end)
-
-    sldu_tasks =
-      Enum.map(sldu["filenames"], fn filename ->
-        fn ->
-          filename
-          |> Shapefile.map_download(sldu["base_url"])
-          |> Enum.each(fn shape ->
-            Shape.changeset(%Shape{}, shape)
-            |> insert(:shape)
-
-            jurisdiction =
-              shape
-              |> Map.drop([:geom])
-              |> Map.put(:name, shape.namelsad)
-              |> Map.put(:type, "us_sldu")
-
-            Jurisdiction.changeset(%Jurisdiction{}, jurisdiction)
-            |> insert(:jurisdiction)
-          end)
-        end
-      end)
-
-    [congress_tasks, states_tasks, sldl_tasks, sldu_tasks]
-    |> List.flatten()
+    end)
     |> Task.async_stream(fn task -> task.() end, timeout: :infinity)
     |> Stream.run()
   end
@@ -174,5 +102,32 @@ defmodule Pyrex.DatabaseLoader do
             "with errors #{inspect(changeset.errors)}"
         )
     end
+  end
+
+  defp build_jurisdiction_for("congress", shape) do
+    shape
+    |> Map.drop([:geom])
+    |> Map.put(:name, shape.namelsad)
+    |> Map.put(:type, "us_cd")
+  end
+
+  defp build_jurisdiction_for("states", shape) do
+    shape
+    |> Map.drop([:geom])
+    |> Map.put(:type, "us_state")
+  end
+
+  defp build_jurisdiction_for("state_legislative_districts_lower", shape) do
+    shape
+    |> Map.drop([:geom])
+    |> Map.put(:name, shape.namelsad)
+    |> Map.put(:type, "us_sldl")
+  end
+
+  defp build_jurisdiction_for("state_legislative_districts_upper", shape) do
+    shape
+    |> Map.drop([:geom])
+    |> Map.put(:name, shape.namelsad)
+    |> Map.put(:type, "us_sldu")
   end
 end
