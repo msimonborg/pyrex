@@ -26,7 +26,7 @@ defmodule Pyrex.Shapefile do
 
     shapefile = Path.join([tmp_dir, filepath])
     url = Path.join([base_url, filepath])
-    opts = Keyword.merge(opts, raw: true, output: shapefile)
+    opts = Keyword.merge(opts, raw: true, output: shapefile, compressed: false)
     Req.get!(url, opts)
 
     shapes =
