@@ -1,5 +1,5 @@
 # Pyrex
-Phone Your Rep rewrite in Pheonix.
+[Phone Your Rep](https://github.com/phoneyourrep/phone-your-rep-api) rewrite in Pheonix with a LiveView UI.
 
 See it in production at https://phoneyourrep.org
 
@@ -12,7 +12,8 @@ See it in production at https://phoneyourrep.org
 * Tailwind CSS 3.1.4
 * Alpine.js 3.10.2
 * GraphQL/Absinthe
-* Postgres/PostGIS 14
+* Postgres 14
+* PostGIS 3
 * fly.io
 
 ## Roadmap
@@ -47,7 +48,7 @@ If you'd like to view the Pheonix LiveDashboard in development it can be found a
 
 This is a free, open-source project made by one creator, hopefully with help from volunteer contributors. The cost of running the servers is directly related to how many people use this app. There is also a cost incurred for every usage of the Google Places Autocomplete widget that helps you look up your address. If you enjoy using this tool and want to see it succeed, your support helps fund those costs.
 
-[https://www.patreon.com/we_dle](https://www.patreon.com/we_dle)
+[https://www.patreon.com/we_dle](https://www.patreon.com/msimonborg)
 
 ## [License](LICENSE)
 
