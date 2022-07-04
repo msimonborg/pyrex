@@ -86,3 +86,8 @@ let enableAutocomplete = function () {
 }
 
 enableAutocomplete()
+
+window.addEventListener(
+  "phx:reset",
+  () => addressInput.value = ""
+)

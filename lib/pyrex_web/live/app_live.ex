@@ -19,6 +19,9 @@ defmodule PyrexWeb.AppLive do
       <Components.Form.button type="submit">
         Search <Components.Icons.solid_search class="ml-3 -mr-1 h-5 w-5" />
       </Components.Form.button>
+      <Components.Form.button type="clear" phx-click="reset">
+        Reset <Components.Icons.solid_trash class="ml-3 -mr-1 h-5 w-5" />
+      </Components.Form.button>
     </.form>
 
     <ul role="list" class="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
@@ -101,6 +104,13 @@ defmodule PyrexWeb.AppLive do
          |> put_flash(:error, reason)
          |> redirect(to: "/")}
     end
+  end
+
+  def handle_event("reset", _, socket) do
+    {:noreply,
+     socket
+     |> assign(:people, [])
+     |> push_event("reset", %{})}
   end
 
   defp fetch_people_with_coordinates(socket, %{lat: _, lon: _} = coordinates) do
