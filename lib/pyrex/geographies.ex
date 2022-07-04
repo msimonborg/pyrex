@@ -1,4 +1,4 @@
-defmodule PYREx.Geographies do
+defmodule Pyrex.Geographies do
   @moduledoc """
   The Geographies context.
   """
@@ -6,7 +6,7 @@ defmodule PYREx.Geographies do
   import Ecto.Query, warn: false
   import Geo.PostGIS
 
-  alias PYREx.{Geographies.Shape, Repo}
+  alias Pyrex.{Geographies.Shape, Repo}
 
   @doc """
   Returns the list of shapes.
@@ -97,11 +97,11 @@ defmodule PYREx.Geographies do
 
   def intersecting_shapes_query(%{} = location) do
     location
-    |> PYREx.Geometry.point(PYREx.Shapefile.srid())
+    |> Pyrex.Geometry.point(Pyrex.Shapefile.srid())
     |> intersecting_shapes_query()
   end
 
-  alias PYREx.Geographies.Jurisdiction
+  alias Pyrex.Geographies.Jurisdiction
 
   @doc """
   Returns the list of jurisdictions.
@@ -183,7 +183,7 @@ defmodule PYREx.Geographies do
 
   ## Examples
       intersecting_jurisdictions(%{lat: 33.184123, lon: -88.317135})
-      #=> [%PYREx.Geographies.Jurisdiction{
+      #=> [%Pyrex.Geographies.Jurisdiction{
             __meta__: #Ecto.Schema.Metadata<:loaded, "jurisdictions">,
             geoid: "01",
             id: "pyr-jurisdiction/type:us_state/country:us/pyrgeoid:G400001/statefp:01",
@@ -195,7 +195,7 @@ defmodule PYREx.Geographies do
             pyrgeoid: G400001,
             type: "us_state",
             updated_at: ~N[2019-03-24 00:23:52]
-          }, %PYREx.Geographies.Jurisdiction{...}, ...]
+          }, %Pyrex.Geographies.Jurisdiction{...}, ...]
   """
   def intersecting_jurisdictions(location) do
     location
@@ -212,7 +212,7 @@ defmodule PYREx.Geographies do
 
   def intersecting_jurisdictions_query(%{} = location) do
     location
-    |> PYREx.Geometry.point(PYREx.Shapefile.srid())
+    |> Pyrex.Geometry.point(Pyrex.Shapefile.srid())
     |> intersecting_jurisdictions_query()
   end
 end

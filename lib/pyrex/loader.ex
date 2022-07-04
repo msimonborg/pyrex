@@ -1,8 +1,8 @@
-defmodule PYREx.Loader do
+defmodule Pyrex.Loader do
   # credo:disable-for-this-file
   require Logger
-  alias PYREx.{Repo, Shapefile, Sources}
-  alias PYREx.Geographies.{Shape, Jurisdiction}
+  alias Pyrex.{Repo, Shapefile, Sources}
+  alias Pyrex.Geographies.{Shape, Jurisdiction}
 
   def us_legislators do
     reps = Sources.us_legislators!()
@@ -18,7 +18,7 @@ defmodule PYREx.Loader do
       |> Map.update("ids", [], &normalize_ids/1)
       |> Map.update("terms", [], fn terms -> normalize_terms(terms, bioguide) end)
       |> Map.drop(["bio", "name"])
-      |> PYREx.Officials.create_or_update_person!()
+      |> Pyrex.Officials.create_or_update_person!()
     end)
   end
 
@@ -33,7 +33,7 @@ defmodule PYREx.Loader do
     Enum.map(terms, fn term ->
       current = if term == List.last(terms), do: true, else: false
       district = normalize_district(term["district"])
-      statefp = PYREx.FIPS.state_code!(term["state"])
+      statefp = Pyrex.FIPS.state_code!(term["state"])
 
       term
       |> Map.put_new("current", current)
@@ -61,8 +61,8 @@ defmodule PYREx.Loader do
         |> Map.put("person_id", bioguide)
         |> Map.put("lat", office["latitude"])
         |> Map.put("lon", office["longitude"])
-        |> Map.put("statefp", PYREx.FIPS.state_code!(office["state"]))
-        |> PYREx.Offices.create_district_office()
+        |> Map.put("statefp", Pyrex.FIPS.state_code!(office["state"]))
+        |> Pyrex.Offices.create_district_office()
       end)
     end)
   end

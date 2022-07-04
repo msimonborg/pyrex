@@ -1,12 +1,12 @@
-defmodule PYREx.Offices do
+defmodule Pyrex.Offices do
   @moduledoc """
   The Offices context.
   """
 
   import Ecto.Query, warn: false
-  alias PYREx.Repo
+  alias Pyrex.Repo
 
-  alias PYREx.Offices.DistrictOffice
+  alias Pyrex.Offices.DistrictOffice
 
   @doc """
   Returns the list of district offices.

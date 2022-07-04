@@ -1,4 +1,4 @@
-defmodule PYREx.FIPS do
+defmodule Pyrex.FIPS do
   @moduledoc """
   U.S. Federal Information Processing Standards (FIPS) data.
   """
@@ -77,16 +77,16 @@ defmodule PYREx.FIPS do
 
   ## Examples
 
-      iex> PYREx.FIPS.state_code("VT")
+      iex> Pyrex.FIPS.state_code("VT")
       {:ok, "50"}
 
-      iex> PYREx.FIPS.state_code("CA")
+      iex> Pyrex.FIPS.state_code("CA")
       {:ok, "06"}
 
-      iex> PYREx.FIPS.state_code("MP")
+      iex> Pyrex.FIPS.state_code("MP")
       {:ok, "69"}
 
-      iex> PYREx.FIPS.state_code("XY")
+      iex> Pyrex.FIPS.state_code("XY")
       :error
   """
   @spec state_code(state_abbr) :: {:ok, statefp} | :error
@@ -106,7 +106,7 @@ defmodule PYREx.FIPS do
 
       :error ->
         raise ArgumentError,
-              "expected `state_abbr` to be one of `PYREx.FIPS.state_abbrs/0`," <>
+              "expected `state_abbr` to be one of `Pyrex.FIPS.state_abbrs/0`," <>
                 " got #{inspect(state_abbr)}"
     end
   end

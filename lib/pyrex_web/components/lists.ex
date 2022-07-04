@@ -1,9 +1,9 @@
-defmodule PYRExWeb.Components.Lists do
+defmodule PyrexWeb.Components.Lists do
   @moduledoc """
   List components
   """
 
-  use PYRExWeb, :component
+  use PyrexWeb, :component
 
   def contact_card(assigns) do
     %{person: person, district_office: district_office} = assigns

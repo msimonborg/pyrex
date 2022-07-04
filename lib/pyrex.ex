@@ -1,6 +1,6 @@
-defmodule PYREx do
+defmodule Pyrex do
   @moduledoc """
-  PYREx keeps the contexts that define your domain
+  Pyrex keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless
@@ -14,11 +14,11 @@ defmodule PYREx do
       config :pyrex, :basic_auth,
         username: "username",
         password: "password"
-      iex> PYREx.config([:basic_auth])
+      iex> Pyrex.config([:basic_auth])
       [username: "username", password: "password"]
-      iex> PYREx.config([:basic_auth, :username])
+      iex> Pyrex.config([:basic_auth, :username])
       "username"
-      iex> PYREx.config([:basic_auth, :password])
+      iex> Pyrex.config([:basic_auth, :password])
       "password"
   """
   def config([main_key | rest] = keyspace) when is_list(keyspace) do

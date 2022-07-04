@@ -1,4 +1,4 @@
-defmodule PYRExWeb.PrivacyPolicyView do
+defmodule PyrexWeb.PrivacyPolicyView do
   @moduledoc false
-  use PYRExWeb, :view
+  use PyrexWeb, :view
 end

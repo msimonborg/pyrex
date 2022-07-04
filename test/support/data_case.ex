@@ -1,4 +1,4 @@
-defmodule PYREx.DataCase do
+defmodule Pyrex.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -10,7 +10,7 @@ defmodule PYREx.DataCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use PYREx.DataCase, async: true`, although
+  by setting `use Pyrex.DataCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -20,17 +20,17 @@ defmodule PYREx.DataCase do
 
   using do
     quote do
-      alias PYREx.Repo
+      alias Pyrex.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import PYREx.DataCase
+      import Pyrex.DataCase
     end
   end
 
   setup tags do
-    PYREx.DataCase.setup_sandbox(tags)
+    Pyrex.DataCase.setup_sandbox(tags)
     :ok
   end
 
@@ -38,7 +38,7 @@ defmodule PYREx.DataCase do
   Sets up the sandbox based on the test tags.
   """
   def setup_sandbox(tags) do
-    pid = Sandbox.start_owner!(PYREx.Repo.Local, shared: not tags[:async])
+    pid = Sandbox.start_owner!(Pyrex.Repo.Local, shared: not tags[:async])
     on_exit(fn -> Sandbox.stop_owner(pid) end)
   end
 

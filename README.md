@@ -1,4 +1,4 @@
-# PYREx
+# Pyrex
 Phone Your Rep rewrite in Pheonix.
 
 See it in production at https://phoneyourrep.org

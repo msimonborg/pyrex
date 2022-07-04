@@ -1,6 +1,6 @@
-defmodule PYREx.Sources do
+defmodule Pyrex.Sources do
   @moduledoc """
-  The sources for the PYREx database.
+  The sources for the Pyrex database.
   Sources are fetched from a remote git repository and require an internet
   connection to return results.
   """

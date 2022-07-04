@@ -1,12 +1,12 @@
-defmodule PYREx.OfficialsTest do
-  use PYREx.DataCase, async: true
+defmodule Pyrex.OfficialsTest do
+  use Pyrex.DataCase, async: true
 
-  alias PYREx.Officials
+  alias Pyrex.Officials
 
   describe "people" do
-    alias PYREx.Officials.Person
+    alias Pyrex.Officials.Person
 
-    import PYREx.OfficialsFixtures
+    import Pyrex.OfficialsFixtures
 
     @invalid_attrs %{birthday: nil, first: nil, gender: nil, last: nil, official_full: nil}
 
@@ -109,9 +109,9 @@ defmodule PYREx.OfficialsTest do
   end
 
   describe "ids" do
-    alias PYREx.Officials.ID
+    alias Pyrex.Officials.ID
 
-    import PYREx.OfficialsFixtures
+    import Pyrex.OfficialsFixtures
 
     @invalid_attrs %{type: nil, value: nil}
 
@@ -167,9 +167,9 @@ defmodule PYREx.OfficialsTest do
   end
 
   describe "terms" do
-    alias PYREx.Officials.Term
+    alias Pyrex.Officials.Term
 
-    import PYREx.OfficialsFixtures
+    import Pyrex.OfficialsFixtures
 
     @invalid_attrs %{
       person_id: nil,

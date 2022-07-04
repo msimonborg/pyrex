@@ -1,4 +1,4 @@
-defmodule PYRExWeb.Endpoint do
+defmodule PyrexWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :pyrex
 
   # The session will be stored in the cookie and signed,
@@ -46,5 +46,5 @@ defmodule PYRExWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug PYRExWeb.Router
+  plug PyrexWeb.Router
 end

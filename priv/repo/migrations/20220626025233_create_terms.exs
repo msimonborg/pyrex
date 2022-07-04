@@ -1,4 +1,4 @@
-defmodule PYREx.Repo.Migrations.CreateTerms do
+defmodule Pyrex.Repo.Migrations.CreateTerms do
   use Ecto.Migration
 
   def change do

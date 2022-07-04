@@ -1,10 +1,10 @@
-defmodule PYRExWeb.Components.Icons do
+defmodule PyrexWeb.Components.Icons do
   @moduledoc """
   A collection of SVG heroicons.
   Source: heroicons.com
   """
 
-  use PYRExWeb, :component
+  use PyrexWeb, :component
 
   @doc """
   Heroicon name: solid/chart-bar

@@ -1,12 +1,12 @@
-defmodule PYRExWeb do
+defmodule PyrexWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use PYRExWeb, :controller
-      use PYRExWeb, :view
+      use PyrexWeb, :controller
+      use PyrexWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,11 +19,11 @@ defmodule PYRExWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: PYRExWeb
+      use Phoenix.Controller, namespace: PyrexWeb
 
       import Plug.Conn
-      import PYRExWeb.Gettext
-      alias PYRExWeb.Router.Helpers, as: Routes
+      import PyrexWeb.Gettext
+      alias PyrexWeb.Router.Helpers, as: Routes
     end
   end
 
@@ -31,7 +31,7 @@ defmodule PYRExWeb do
     quote do
       use Phoenix.View,
         root: "lib/pyrex_web/templates",
-        namespace: PYRExWeb
+        namespace: PyrexWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller,
@@ -45,7 +45,7 @@ defmodule PYRExWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {PYRExWeb.LayoutView, "live.html"}
+        layout: {PyrexWeb.LayoutView, "live.html"}
 
       unquote(view_helpers())
     end
@@ -80,7 +80,7 @@ defmodule PYRExWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import PYRExWeb.Gettext
+      import PyrexWeb.Gettext
     end
   end
 
@@ -95,11 +95,11 @@ defmodule PYRExWeb do
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
 
-      import PYRExWeb.ErrorHelpers
-      import PYRExWeb.Gettext
+      import PyrexWeb.ErrorHelpers
+      import PyrexWeb.Gettext
 
-      alias PYRExWeb.Components
-      alias PYRExWeb.Router.Helpers, as: Routes
+      alias PyrexWeb.Components
+      alias PyrexWeb.Router.Helpers, as: Routes
     end
   end
 

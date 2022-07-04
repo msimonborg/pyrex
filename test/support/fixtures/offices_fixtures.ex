@@ -1,7 +1,7 @@
-defmodule PYREx.OfficesFixtures do
+defmodule Pyrex.OfficesFixtures do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `PYREx.Offices` context.
+  entities via the `Pyrex.Offices` context.
   """
 
   @doc """
@@ -25,7 +25,7 @@ defmodule PYREx.OfficesFixtures do
         suite: "some suite",
         zip: "some zip"
       })
-      |> PYREx.Offices.create_district_office()
+      |> Pyrex.Offices.create_district_office()
 
     district_office
   end

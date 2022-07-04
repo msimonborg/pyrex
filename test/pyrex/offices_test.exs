@@ -1,12 +1,12 @@
-defmodule PYREx.OfficesTest do
-  use PYREx.DataCase
+defmodule Pyrex.OfficesTest do
+  use Pyrex.DataCase
 
-  alias PYREx.Offices
+  alias Pyrex.Offices
 
   describe "district_offices" do
-    alias PYREx.Offices.DistrictOffice
+    alias Pyrex.Offices.DistrictOffice
 
-    import PYREx.OfficesFixtures
+    import Pyrex.OfficesFixtures
 
     @invalid_attrs %{
       address: nil,

@@ -1,15 +1,15 @@
-defmodule PYREx.Geographies.Jurisdiction do
+defmodule Pyrex.Geographies.Jurisdiction do
   @moduledoc """
   The database record that holds statistical data about a
   government jurisdiction.
   """
 
-  use PYREx.Schema
+  use Pyrex.Schema
 
   import Ecto.Changeset
 
-  alias PYREx.Geographies.{Jurisdiction, Shape}
-  alias PYREx.{Officials.Term, Repo}
+  alias Pyrex.Geographies.{Jurisdiction, Shape}
+  alias Pyrex.{Officials.Term, Repo}
 
   schema "jurisdictions" do
     field :geoid, :string

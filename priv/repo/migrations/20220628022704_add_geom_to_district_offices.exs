@@ -1,4 +1,4 @@
-defmodule PYREx.Repo.Local.Migrations.AddGeomToDistrictOffices do
+defmodule Pyrex.Repo.Local.Migrations.AddGeomToDistrictOffices do
   use Ecto.Migration
 
   def change do

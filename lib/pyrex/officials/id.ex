@@ -1,12 +1,12 @@
-defmodule PYREx.Officials.ID do
+defmodule Pyrex.Officials.ID do
   @moduledoc """
   IDs of different types for elected officials.
   """
-  use PYREx.Schema
+  use Pyrex.Schema
 
   import Ecto.Changeset
 
-  alias PYREx.Repo
+  alias Pyrex.Repo
 
   schema "ids" do
     field :type, :string

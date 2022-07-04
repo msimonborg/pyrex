@@ -1,4 +1,4 @@
-defmodule PYREx.DataUpdater do
+defmodule Pyrex.DataUpdater do
   @moduledoc """
   A GenServer that periodically updates the database with fresh
   legislator data.
@@ -28,8 +28,8 @@ defmodule PYREx.DataUpdater do
   end
 
   def handle_info(:update, state) do
-    PYREx.Loader.us_legislators()
-    PYREx.Loader.us_legislators_district_offices()
+    Pyrex.Loader.us_legislators()
+    Pyrex.Loader.us_legislators_district_offices()
     {:noreply, state}
   end
 end

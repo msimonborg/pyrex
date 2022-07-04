@@ -1,4 +1,4 @@
-defmodule PYREx.Repo.Local.Migrations.AddStatefpToTerms do
+defmodule Pyrex.Repo.Local.Migrations.AddStatefpToTerms do
   use Ecto.Migration
 
   def change do

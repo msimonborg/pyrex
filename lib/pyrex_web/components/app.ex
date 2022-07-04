@@ -1,9 +1,9 @@
-defmodule PYRExWeb.Components.App do
+defmodule PyrexWeb.Components.App do
   @moduledoc """
   Application UI components.
   """
 
-  use PYRExWeb, :component
+  use PyrexWeb, :component
 
   def layout(assigns) do
     ~H"""

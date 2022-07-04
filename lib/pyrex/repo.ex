@@ -1,4 +1,4 @@
-defmodule PYREx.Repo.Local do
+defmodule Pyrex.Repo.Local do
   @moduledoc false
 
   use Ecto.Repo,
@@ -14,8 +14,8 @@ defmodule PYREx.Repo.Local do
   end
 end
 
-defmodule PYREx.Repo do
+defmodule Pyrex.Repo do
   @moduledoc false
 
-  use Fly.Repo, local_repo: PYREx.Repo.Local
+  use Fly.Repo, local_repo: Pyrex.Repo.Local
 end

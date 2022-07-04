@@ -10,10 +10,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu+Mono:wght@700&display=swap" rel="stylesheet">
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
-    <script src={"https://maps.googleapis.com/maps/api/js?key=#{PYREx.config([:google_places_api_key])}&libraries=geometry,places"}></script>
+    <script src={"https://maps.googleapis.com/maps/api/js?key=#{Pyrex.config([:google_places_api_key])}&libraries=geometry,places"}></script>
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
-    <%= if PYREx.config([:env]) == :prod and PYREx.config([PYRExWeb, :plausible_analytics]) do %>
-      <script defer data-domain={PYREx.config([PYRExWeb.Endpoint, :url, :host])} src="https://plausible.io/js/plausible.js"></script>
+    <%= if Pyrex.config([:env]) == :prod and Pyrex.config([PyrexWeb, :plausible_analytics]) do %>
+      <script defer data-domain={Pyrex.config([PyrexWeb.Endpoint, :url, :host])} src="https://plausible.io/js/plausible.js"></script>
     <% end %>
   </head>
   <body class="h-full">

@@ -1,4 +1,4 @@
-defmodule PYREx.Repo.Migrations.CreateDistrictOffices do
+defmodule Pyrex.Repo.Migrations.CreateDistrictOffices do
   use Ecto.Migration
 
   def change do

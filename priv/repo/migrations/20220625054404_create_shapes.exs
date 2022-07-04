@@ -1,4 +1,4 @@
-defmodule PYREx.Repo.Local.Migrations.CreateShapes do
+defmodule Pyrex.Repo.Local.Migrations.CreateShapes do
   use Ecto.Migration
 
   def change do

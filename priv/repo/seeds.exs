@@ -5,11 +5,11 @@
 # Inside the script, you can read and write to any of your
 # repositories directly:
 #
-#     PYREx.Repo.insert!(%PYREx.SomeSchema{})
+#     Pyrex.Repo.insert!(%Pyrex.SomeSchema{})
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-PYREx.Loader.shapes_and_jurisdictions()
-PYREx.Loader.us_legislators()
-PYREx.Loader.us_legislators_district_offices()
+Pyrex.Loader.shapes_and_jurisdictions()
+Pyrex.Loader.us_legislators()
+Pyrex.Loader.us_legislators_district_offices()

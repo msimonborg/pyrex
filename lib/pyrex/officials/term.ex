@@ -1,13 +1,13 @@
-defmodule PYREx.Officials.Term do
+defmodule Pyrex.Officials.Term do
   @moduledoc """
   The database record for an elected official's term of office.
   """
 
-  use PYREx.Schema
+  use Pyrex.Schema
 
   import Ecto.Changeset
 
-  alias PYREx.Repo
+  alias Pyrex.Repo
 
   schema "terms" do
     field :address, :string

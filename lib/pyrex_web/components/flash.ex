@@ -1,9 +1,9 @@
-defmodule PYRExWeb.Components.Flash do
+defmodule PyrexWeb.Components.Flash do
   @moduledoc """
   Flash messages
   """
 
-  use PYRExWeb, :component
+  use PyrexWeb, :component
 
   @doc """
   Renders a message.

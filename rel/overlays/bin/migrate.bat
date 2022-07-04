@@ -1,1 +1,1 @@
-call "%~dp0\pyrex" eval PYREx.Release.migrate
+call "%~dp0\pyrex" eval Pyrex.Release.migrate

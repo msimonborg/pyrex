@@ -1,2 +1,2 @@
 ExUnit.start()
-Ecto.Adapters.SQL.Sandbox.mode(PYREx.Repo.Local, :manual)
+Ecto.Adapters.SQL.Sandbox.mode(Pyrex.Repo.Local, :manual)

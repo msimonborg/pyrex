@@ -1,4 +1,4 @@
-defmodule PYREx.Geometry do
+defmodule Pyrex.Geometry do
   @moduledoc """
   A module for converting user input into geometry data types.
   """

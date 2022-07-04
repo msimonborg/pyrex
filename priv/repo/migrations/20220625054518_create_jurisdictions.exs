@@ -1,4 +1,4 @@
-defmodule PYREx.Repo.Local.Migrations.CreateJurisdictions do
+defmodule Pyrex.Repo.Local.Migrations.CreateJurisdictions do
   use Ecto.Migration
 
   def change do

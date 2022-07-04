@@ -8,22 +8,22 @@
 import Config
 
 config :pyrex,
-  namespace: PYREx,
-  ecto_repos: [PYREx.Repo.Local],
+  namespace: Pyrex,
+  ecto_repos: [Pyrex.Repo.Local],
   env: config_env()
 
 # Configures the endpoint
-config :pyrex, PYRExWeb.Endpoint,
+config :pyrex, PyrexWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: PYRExWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: PYREx.PubSub,
+  render_errors: [view: PyrexWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: Pyrex.PubSub,
   live_view: [signing_salt: "YOoKQgxg"]
 
-config :pyrex, PYREx.Repo.Local,
+config :pyrex, Pyrex.Repo.Local,
   priv: "priv/repo",
   extensions: [{Geo.PostGIS.Extension, library: Geo}],
   adapter: Ecto.Adapters.Postgres,
-  types: PYREx.PostgrexTypes,
+  types: Pyrex.PostgrexTypes,
   queue_target: 1_000,
   queue_interval: 10_000
 

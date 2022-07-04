@@ -1,14 +1,14 @@
-defmodule PYREx.Officials.Person do
+defmodule Pyrex.Officials.Person do
   @moduledoc """
   A schema for elected officials.
   """
 
-  use PYREx.Schema
+  use Pyrex.Schema
 
   import Ecto.Changeset
 
-  alias PYREx.Officials.{ID, Term}
-  alias PYREx.{Offices.DistrictOffice, Repo}
+  alias Pyrex.Officials.{ID, Term}
+  alias Pyrex.{Offices.DistrictOffice, Repo}
 
   schema "people" do
     field :birthday, :date

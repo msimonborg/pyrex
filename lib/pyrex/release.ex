@@ -1,4 +1,4 @@
-defmodule PYREx.Release do
+defmodule Pyrex.Release do
   @moduledoc """
   Used for executing DB release tasks when run in production without Mix
   installed.

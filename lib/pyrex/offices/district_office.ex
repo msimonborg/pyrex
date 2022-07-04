@@ -1,13 +1,13 @@
-defmodule PYREx.Offices.DistrictOffice do
+defmodule Pyrex.Offices.DistrictOffice do
   @moduledoc """
   A schema for the district offices of elected officials.
   """
 
-  use PYREx.Schema
+  use Pyrex.Schema
 
   import Ecto.Changeset
 
-  alias PYREx.Repo
+  alias Pyrex.Repo
 
   schema "district_offices" do
     field :address, :string
@@ -71,9 +71,9 @@ defmodule PYREx.Offices.DistrictOffice do
 
     point =
       if lat && lon do
-        PYREx.Geometry.point(%{lat: lat, lon: lon}, PYREx.Shapefile.srid())
+        Pyrex.Geometry.point(%{lat: lat, lon: lon}, Pyrex.Shapefile.srid())
       else
-        PYREx.Geometry.point(%{lat: 0.0, lon: 0.0}, PYREx.Shapefile.srid())
+        Pyrex.Geometry.point(%{lat: 0.0, lon: 0.0}, Pyrex.Shapefile.srid())
       end
 
     change(changeset, geom: point)

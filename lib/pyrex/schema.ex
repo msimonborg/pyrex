@@ -1,4 +1,4 @@
-defmodule PYREx.Schema do
+defmodule Pyrex.Schema do
   @moduledoc """
   Shared schema functionality
   """

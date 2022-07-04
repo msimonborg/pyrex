@@ -1,4 +1,4 @@
-defmodule PYREx.Repo.Migrations.CreatePeople do
+defmodule Pyrex.Repo.Migrations.CreatePeople do
   use Ecto.Migration
 
   def change do

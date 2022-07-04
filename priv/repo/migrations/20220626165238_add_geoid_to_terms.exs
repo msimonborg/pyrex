@@ -1,4 +1,4 @@
-defmodule PYREx.Repo.Local.Migrations.AddGeoidToTerms do
+defmodule Pyrex.Repo.Local.Migrations.AddGeoidToTerms do
   use Ecto.Migration
 
   def change do

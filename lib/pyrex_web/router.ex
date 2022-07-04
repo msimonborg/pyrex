@@ -1,15 +1,15 @@
-defmodule PYRExWeb.Router do
-  use PYRExWeb, :router
+defmodule PyrexWeb.Router do
+  use PyrexWeb, :router
 
   import Phoenix.LiveDashboard.Router
 
   defp basic_auth(conn, _) do
-    credentials = PYREx.config([:basic_auth])
+    credentials = Pyrex.config([:basic_auth])
     Plug.BasicAuth.basic_auth(conn, credentials)
   end
 
   defp redirect_from_fly_host(conn, :prod) do
-    host = PYREx.config([PYRExWeb.Endpoint, :url, :host])
+    host = Pyrex.config([PyrexWeb.Endpoint, :url, :host])
 
     case conn.host do
       ^host -> conn
@@ -23,10 +23,10 @@ defmodule PYRExWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :put_root_layout, {PYRExWeb.LayoutView, :root}
+    plug :put_root_layout, {PyrexWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug :redirect_from_fly_host, PYREx.config([:env])
+    plug :redirect_from_fly_host, Pyrex.config([:env])
   end
 
   pipeline :api do
@@ -36,10 +36,10 @@ defmodule PYRExWeb.Router do
   scope "/" do
     pipe_through [:browser, :basic_auth]
 
-    live_dashboard "/dashboard", metrics: PYRExWeb.Telemetry
+    live_dashboard "/dashboard", metrics: PyrexWeb.Telemetry
   end
 
-  scope "/", PYRExWeb do
+  scope "/", PyrexWeb do
     pipe_through :browser
 
     live "/", AppLive
@@ -48,7 +48,7 @@ defmodule PYRExWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", PYRExWeb do
+  # scope "/api", PyrexWeb do
   #   pipe_through :api
   # end
 end

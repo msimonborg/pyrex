@@ -1,9 +1,9 @@
-defmodule PYRExWeb.Components.Form do
+defmodule PyrexWeb.Components.Form do
   @moduledoc """
   Form components.
   """
 
-  use PYRExWeb, :component
+  use PyrexWeb, :component
 
   def input(%{type: "address"} = assigns) do
     ~H"""

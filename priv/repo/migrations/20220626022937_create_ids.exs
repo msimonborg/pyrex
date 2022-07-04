@@ -1,4 +1,4 @@
-defmodule PYREx.Repo.Migrations.CreateIds do
+defmodule Pyrex.Repo.Migrations.CreateIds do
   use Ecto.Migration
 
   def change do

@@ -1,4 +1,4 @@
-defmodule PYREx.MixProject do
+defmodule Pyrex.MixProject do
   use Mix.Project
 
   def project do
@@ -20,7 +20,7 @@ defmodule PYREx.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {PYREx.Application, []},
+      mod: {Pyrex.Application, []},
       extra_applications: [:logger, :os_mon, :runtime_tools]
     ]
   end
@@ -38,7 +38,7 @@ defmodule PYREx.MixProject do
       {:ecto_sql, "~> 3.6"},
       {:esbuild, "~> 0.4", runtime: Mix.env() == :dev},
       {:ex_doc, "~> 0.27", only: [:test, :dev], runtime: false},
-      {:exshape, "~> 2.1.2"},
+      {:exshape, "~> 2.2"},
       {:floki, ">= 0.30.0", only: :test},
       {:fly_postgres, "~> 0.2.0"},
       {:geo_postgis, "~> 3.4"},

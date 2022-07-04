@@ -1,4 +1,4 @@
-defmodule PYREx.Repo.Local.Migrations.CreateUniqueIndexesOnShapesAndJurisdictions do
+defmodule Pyrex.Repo.Local.Migrations.CreateUniqueIndexesOnShapesAndJurisdictions do
   use Ecto.Migration
 
   def change do

@@ -1,5 +1,5 @@
-defmodule PYRExWeb.ErrorView do
-  use PYRExWeb, :view
+defmodule PyrexWeb.ErrorView do
+  use PyrexWeb, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.

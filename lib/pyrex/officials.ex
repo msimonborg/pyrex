@@ -1,4 +1,4 @@
-defmodule PYREx.Officials do
+defmodule Pyrex.Officials do
   @moduledoc """
   The Officials context.
   """
@@ -6,9 +6,9 @@ defmodule PYREx.Officials do
   import Ecto.Query, warn: false
   import Geo.PostGIS
 
-  alias PYREx.Repo
+  alias Pyrex.Repo
 
-  alias PYREx.Officials.Person
+  alias Pyrex.Officials.Person
 
   @doc """
   Returns the list of people.
@@ -26,10 +26,10 @@ defmodule PYREx.Officials do
   def list_current_people_for_location(location) do
     jurisdictions_query =
       location
-      |> PYREx.Geographies.intersecting_jurisdictions_query()
+      |> Pyrex.Geographies.intersecting_jurisdictions_query()
       |> select([:id, :geoid])
 
-    point = PYREx.Geometry.point(location, PYREx.Shapefile.srid())
+    point = Pyrex.Geometry.point(location, Pyrex.Shapefile.srid())
 
     query =
       from(p in Person,
@@ -151,7 +151,7 @@ defmodule PYREx.Officials do
     Person.changeset(person, attrs)
   end
 
-  alias PYREx.Officials.ID
+  alias Pyrex.Officials.ID
 
   @doc """
   Returns the list of ids.
@@ -247,7 +247,7 @@ defmodule PYREx.Officials do
     ID.changeset(id, attrs)
   end
 
-  alias PYREx.Officials.Term
+  alias Pyrex.Officials.Term
 
   @doc """
   Returns the list of terms.

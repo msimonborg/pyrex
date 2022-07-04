@@ -1,4 +1,4 @@
-defmodule PYREx.Repo.Local.Migrations.CreatePostgisExtension do
+defmodule Pyrex.Repo.Local.Migrations.CreatePostgisExtension do
   use Ecto.Migration
 
   def up do

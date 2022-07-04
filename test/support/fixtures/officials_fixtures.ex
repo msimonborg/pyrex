@@ -1,7 +1,7 @@
-defmodule PYREx.OfficialsFixtures do
+defmodule Pyrex.OfficialsFixtures do
   @moduledoc """
   This module defines test helpers for creating
-  entities via the `PYREx.Officials` context.
+  entities via the `Pyrex.Officials` context.
   """
 
   @doc """
@@ -18,7 +18,7 @@ defmodule PYREx.OfficialsFixtures do
         last: "some last",
         official_full: "some official_full"
       })
-      |> PYREx.Officials.create_person()
+      |> Pyrex.Officials.create_person()
 
     person
   end
@@ -33,7 +33,7 @@ defmodule PYREx.OfficialsFixtures do
         type: "some type",
         value: "some value"
       })
-      |> PYREx.Officials.create_id()
+      |> Pyrex.Officials.create_id()
 
     id
   end
@@ -64,7 +64,7 @@ defmodule PYREx.OfficialsFixtures do
         url: "some url",
         current: true
       })
-      |> PYREx.Officials.create_term()
+      |> Pyrex.Officials.create_term()
 
     term
   end

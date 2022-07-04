@@ -1,9 +1,9 @@
-defmodule PYRExWeb.AppLive do
+defmodule PyrexWeb.AppLive do
   @moduledoc """
   The main app view.
   """
 
-  use PYRExWeb, :live_view
+  use PyrexWeb, :live_view
 
   require Logger
 
@@ -105,7 +105,7 @@ defmodule PYRExWeb.AppLive do
 
   defp fetch_people_with_coordinates(socket, %{lat: _, lon: _} = coordinates) do
     Logger.info("received coordinates: #{inspect(coordinates)}")
-    people = PYREx.Officials.list_current_people_for_location(coordinates)
+    people = Pyrex.Officials.list_current_people_for_location(coordinates)
     assign(socket, :people, people)
   end
 end

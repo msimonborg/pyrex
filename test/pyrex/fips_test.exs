@@ -1,4 +1,4 @@
-defmodule PYREx.FIPSTest do
+defmodule Pyrex.FIPSTest do
   use ExUnit.Case, async: true
-  doctest PYREx.FIPS
+  doctest Pyrex.FIPS
 end

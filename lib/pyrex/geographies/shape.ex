@@ -1,14 +1,14 @@
-defmodule PYREx.Geographies.Shape do
+defmodule Pyrex.Geographies.Shape do
   @moduledoc """
   The geospatial database record that defines the geometric
   shape of a Jurisdiction with the corresponding `pyrgeoid`.
   """
 
-  use PYREx.Schema
+  use Pyrex.Schema
 
   import Ecto.Changeset
 
-  alias PYREx.Repo
+  alias Pyrex.Repo
 
   schema "shapes" do
     field :geom, Geo.PostGIS.Geometry
@@ -16,7 +16,7 @@ defmodule PYREx.Geographies.Shape do
     field :geoid, :string
 
     belongs_to :jurisdiction,
-               PYREx.Geographies.Jurisdiction,
+               Pyrex.Geographies.Jurisdiction,
                references: :pyrgeoid,
                foreign_key: :pyrgeoid
 

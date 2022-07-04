@@ -1,4 +1,4 @@
-defmodule PYREx.Shapefile do
+defmodule Pyrex.Shapefile do
   @moduledoc """
   Read shapefile data.
   """
@@ -92,7 +92,7 @@ defmodule PYREx.Shapefile do
   @doc """
   Transforms an `Exshape.Shp.Polygon.t()` to a `Geo.Polygon.t()`.
   ## Examples
-      iex> PYREx.Shapefile.exshape_to_geo(%Exshape.Shp.Polygon{points: [[[
+      iex> Pyrex.Shapefile.exshape_to_geo(%Exshape.Shp.Polygon{points: [[[
       ...>   %Exshape.Shp.Point{x: -96.639704, y: 42.737071},
       ...>   %Exshape.Shp.Point{x: -96.635886, y: 42.741002},
       ...>   %Exshape.Shp.Point{x: -96.632314, y: 42.745641}
@@ -119,7 +119,7 @@ defmodule PYREx.Shapefile do
   @doc """
   The SRID projection used by the application. Returns the integer value `4269`.
   ## Examples
-      iex> PYREx.Shapefile.srid()
+      iex> Pyrex.Shapefile.srid()
       4269
   """
   def srid, do: 4269

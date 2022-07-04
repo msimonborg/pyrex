@@ -1,4 +1,4 @@
-defmodule PYREx.Application do
+defmodule Pyrex.Application do
   @moduledoc false
 
   use Application
@@ -7,18 +7,18 @@ defmodule PYREx.Application do
   def start(_type, _args) do
     children =
       [
-        {Cluster.Supervisor, [topologies(), [name: PYREx.ClusterSupervisor]]},
+        {Cluster.Supervisor, [topologies(), [name: Pyrex.ClusterSupervisor]]},
         # Start the RPC server before the DB
         {Fly.RPC, []},
-        PYREx.Repo.Local,
+        Pyrex.Repo.Local,
         # Start the tracker after the DB
-        {Fly.Postgres.LSN.Tracker, repo: PYREx.Repo.Local},
-        PYRExWeb.Telemetry,
-        {Phoenix.PubSub, name: PYREx.PubSub},
-        PYRExWeb.Endpoint
+        {Fly.Postgres.LSN.Tracker, repo: Pyrex.Repo.Local},
+        PyrexWeb.Telemetry,
+        {Phoenix.PubSub, name: Pyrex.PubSub},
+        PyrexWeb.Endpoint
       ] ++ add_data_updater_in_primary_region()
 
-    opts = [strategy: :one_for_one, name: PYREx.Supervisor]
+    opts = [strategy: :one_for_one, name: Pyrex.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
@@ -26,12 +26,12 @@ defmodule PYREx.Application do
   # whenever the application is updated.
   @impl true
   def config_change(changed, _new, removed) do
-    PYRExWeb.Endpoint.config_change(changed, removed)
+    PyrexWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 
   defp add_data_updater_in_primary_region do
-    if Fly.is_primary?(), do: [PYREx.DataUpdater], else: []
+    if Fly.is_primary?(), do: [Pyrex.DataUpdater], else: []
   end
 
   # libcluster clustering topologies
