@@ -24,7 +24,7 @@ defmodule Pyrex.VCard do
     SOURCE:https://phoneyourrep.org/v-cards/#{district_office.id}
     PHOTO:#{Officials.person_photo_url(person)}
     ADR;TYPE=work:#{district_office.address};#{district_office.city};#{district_office.state};#{district_office.zip}
-    TEL;VALUE=uri;PREF=1;TYPE=voice:tel:+1-#{district_office.phone}
+    TEL;VALUE=uri;PREF=1;TYPE=voice:+1-#{district_office.phone}
     GEO:"geo:#{district_office.lat},#{district_office.lon}"
     ROLE:#{if person.current_term.type == "sen", do: "U.S. Senator", else: "U.S. Representative"}
     END:VCARD
