@@ -27,8 +27,9 @@ See it in production at https://phoneyourrep.org
 - [x] Sort offices by proximity to address
 - [x] Modules/workers to fetch, load, and periodically update data from external source
 - [x] [Phoenix LiveView](https://github.com/phoenixframework/phoenix_live_view) UI
-- [ ] VCard (.vcf) downloads for legislator office contacts
+- [x] VCard (.vcf) downloads for legislator office contacts
 - [ ] QR Codes for VCard download URLs, or directly encoding .vcf file contents
+- [ ] Add state and local legislators
 - [ ] GraphQL API using [Absinthe](https://github.com/absinthe-graphql/absinthe)
 
 ## Development
