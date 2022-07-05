@@ -10,7 +10,7 @@ defmodule Pyrex.VCard do
   @type person_term :: Term.t()
   @type v_card :: binary
 
-  @spec encode(person, office) :: v_card
+  @spec encode(person, office | person_term) :: v_card
   def encode(%Person{} = person, %DistrictOffice{} = district_office) do
     ~s"""
     BEGIN:VCARD
@@ -26,6 +26,25 @@ defmodule Pyrex.VCard do
     ADR;TYPE=work:#{district_office.address};#{district_office.city};#{district_office.state};#{district_office.zip}
     TEL;VALUE=uri;PREF=1;TYPE=voice:+1-#{district_office.phone}
     GEO:"geo:#{district_office.lat},#{district_office.lon}"
+    ROLE:#{if person.current_term.type == "sen", do: "U.S. Senator", else: "U.S. Representative"}
+    END:VCARD
+    """
+  end
+
+  def encode(%Person{} = person, %Term{} = term) do
+    ~s"""
+    BEGIN:VCARD
+    VERSION:3.0
+    KIND:location
+    FN:#{person.official_full}
+    N:#{person.last};#{person.first}
+    GENDER:#{person.gender}
+    BDAY:#{person.birthday |> to_string() |> String.replace("-", "")}
+    ORG:#{person.official_full} D.C. Office
+    SOURCE:https://phoneyourrep.org/v-cards/#{term.id}
+    PHOTO:#{Officials.person_photo_url(person)}
+    ADR;TYPE=work:#{term.address}
+    TEL;VALUE=uri;PREF=1;TYPE=voice:+1-#{term.phone}
     ROLE:#{if person.current_term.type == "sen", do: "U.S. Senator", else: "U.S. Representative"}
     END:VCARD
     """

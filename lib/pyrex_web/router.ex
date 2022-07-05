@@ -45,7 +45,8 @@ defmodule PyrexWeb.Router do
     live "/", AppLive
 
     get "/privacy-policy", PrivacyPolicyController, :index
-    get "/v-cards/:office_id", VCardsController, :download
+    get "/v-cards/district-offices/:office_id", VCardsController, :district_offices
+    get "/v-cards/current-terms/:person_id", VCardsController, :current_terms
   end
 
   # Other scopes may use custom stacks.
