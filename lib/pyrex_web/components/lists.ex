@@ -17,10 +17,7 @@ defmodule PyrexWeb.Components.Lists do
       |> assign_address(district_office, current_term)
       |> assign_phone(district_office, current_term)
       |> assign_role(current_term)
-      |> assign(
-        :photo_url,
-        "https://raw.githubusercontent.com/unitedstates/images/gh-pages/congress/225x275/#{assigns.person.id}.jpg"
-      )
+      |> assign(:photo_url, Pyrex.Officials.person_photo_url(assigns.person))
 
     ~H"""
     <li
@@ -66,13 +63,23 @@ defmodule PyrexWeb.Components.Lists do
       <div>
         <div class="-mt-px flex divide-x divide-gray-200">
           <div class="w-0 flex-1 flex">
-            <a
-              href={current_term.contact_form || current_term.url}
-              class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-lg md:text-base text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500"
-            >
-              <Components.Icons.solid_link class="h-5 w-5 text-gray-400" />
-              <span class="ml-3">Contact</span>
-            </a>
+            <%= if @district_office do %>
+              <a
+                href={Routes.v_cards_path(@socket, :download, @district_office)}
+                class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-lg md:text-base text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500"
+              >
+                <Components.Icons.solid_download class="h-5 w-5 text-gray-400" />
+                <span class="ml-3">Download</span>
+              </a>
+            <% else %>
+              <a
+                href={current_term.contact_form || current_term.url}
+                class="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-lg md:text-base text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500"
+              >
+                <Components.Icons.solid_link class="h-5 w-5 text-gray-400" />
+                <span class="ml-3">Contact</span>
+              </a>
+            <% end %>
           </div>
           <div class="-ml-px w-0 flex-1 flex">
             <a

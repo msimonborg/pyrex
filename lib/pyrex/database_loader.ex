@@ -87,7 +87,7 @@ defmodule Pyrex.DatabaseLoader do
         end
       end)
     end)
-    |> Task.async_stream(fn task -> task.() end, timeout: :infinity)
+    |> Task.async_stream(& &1.(), timeout: :infinity)
     |> Stream.run()
   end
 

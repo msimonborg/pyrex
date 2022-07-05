@@ -26,9 +26,9 @@ defmodule PyrexWeb.AppLive do
 
     <ul role="list" class="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-2 xl:grid-cols-3">
       <%= for person <- @people do %>
-        <Components.Lists.contact_card person={person} district_office={false} />
+        <Components.Lists.contact_card person={person} district_office={false} {assigns} />
         <%= for office <- person.district_offices do %>
-          <Components.Lists.contact_card person={person} district_office={office} />
+          <Components.Lists.contact_card person={person} district_office={office} {assigns} />
         <% end %>
       <% end %>
     </ul>

@@ -32,7 +32,7 @@ defmodule Pyrex.Officials do
     point = Pyrex.Geometry.point(location, Pyrex.Shapefile.srid())
 
     query =
-      from(p in Person,
+      from p in Person,
         join: t in assoc(p, :terms),
         where: t.current == true,
         join: j in subquery(jurisdictions_query),
@@ -40,7 +40,6 @@ defmodule Pyrex.Officials do
         left_join: o in assoc(p, :district_offices),
         order_by: st_distancesphere(o.geom, ^point),
         preload: [current_term: t, district_offices: o]
-      )
 
     Repo.all(query)
   end
@@ -59,7 +58,13 @@ defmodule Pyrex.Officials do
       ** (Ecto.NoResultsError)
 
   """
-  def get_person!(id), do: Repo.get!(Person, id)
+  def get_person!(id) do
+    Repo.get!(Person, id)
+  end
+
+  def get_person!(id, preload: preloads) do
+    id |> get_person!() |> Repo.preload(preloads)
+  end
 
   @doc """
   Creates a person.
@@ -149,6 +154,18 @@ defmodule Pyrex.Officials do
   """
   def change_person(%Person{} = person, attrs \\ %{}) do
     Person.changeset(person, attrs)
+  end
+
+  @doc """
+  Returns a person's photo url.
+
+  ## Examples
+
+      iex> person_photo_url(%{id: "hello"} = person)
+      "https://raw.githubusercontent.com/unitedstates/images/gh-pages/congress/225x275/hello.jpg"
+  """
+  def person_photo_url(%Person{} = person) do
+    "https://raw.githubusercontent.com/unitedstates/images/gh-pages/congress/225x275/#{person.id}.jpg"
   end
 
   alias Pyrex.Officials.ID

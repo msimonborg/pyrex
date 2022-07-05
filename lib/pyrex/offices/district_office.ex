@@ -55,6 +55,25 @@ defmodule Pyrex.Offices.DistrictOffice do
     :phone
   ]
 
+  @type t :: %__MODULE__{
+          address: String.t(),
+          building: String.t(),
+          city: String.t(),
+          fax: String.t(),
+          geom: Geo.Point.t(),
+          hours: String.t(),
+          lat: float,
+          lon: float,
+          phone: String.t(),
+          state: String.t(),
+          statefp: String.t(),
+          suite: String.t(),
+          zip: String.t(),
+          person_id: String.t(),
+          updated_at: NaiveDateTime.t(),
+          inserted_at: NaiveDateTime.t()
+        }
+
   @doc false
   def changeset(district_office, attrs) do
     district_office

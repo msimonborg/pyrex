@@ -27,6 +27,16 @@ defmodule Pyrex.Officials.Person do
     timestamps()
   end
 
+  @type t :: %__MODULE__{
+          birthday: Date.t(),
+          first: String.t(),
+          gender: String.t(),
+          last: String.t(),
+          official_full: String.t(),
+          updated_at: NaiveDateTime.t(),
+          inserted_at: NaiveDateTime.t()
+        }
+
   @doc false
   def changeset(person, attrs) do
     person

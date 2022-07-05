@@ -66,6 +66,30 @@ defmodule Pyrex.Officials.Term do
     :geoid
   ]
 
+  @type t :: %__MODULE__{
+          address: String.t(),
+          bioguide: String.t(),
+          class: integer,
+          contact_form: String.t(),
+          current: boolean,
+          district: String.t(),
+          end: Date.t(),
+          geoid: String.t(),
+          office: String.t(),
+          party: String.t(),
+          person_id: String.t(),
+          phone: String.t(),
+          rss_url: String.t(),
+          start: Date.t(),
+          state: String.t(),
+          statefp: String.t(),
+          state_rank: String.t(),
+          type: String.t(),
+          url: String.t(),
+          updated_at: NaiveDateTime.t(),
+          inserted_at: NaiveDateTime.t()
+        }
+
   @doc false
   def changeset(term, attrs) do
     term
