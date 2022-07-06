@@ -8,18 +8,18 @@ defmodule PyrexWeb.VCardsController do
   def district_offices(conn, %{"office_id" => office_id}) do
     district_office = Offices.get_district_office!(office_id)
     person = Officials.get_person!(district_office.person_id, preload: [:current_term])
-    generate_and_send_download(conn, person, district_office, district_office.city)
+    vcf = VCard.encode(person, district_office)
+    do_send_download(conn, vcf, person.official_full, district_office.city)
   end
 
   def current_terms(conn, %{"person_id" => person_id}) do
     person = Officials.get_person!(person_id, preload: [:current_term])
-    generate_and_send_download(conn, person, person.current_term, "D.C.")
+    vcf = VCard.encode(person)
+    do_send_download(conn, vcf, person.official_full, "D.C.")
   end
 
-  defp generate_and_send_download(conn, person, office_data, city) do
-    vcf = VCard.encode(person, office_data)
-    filename = filename(person.official_full, city)
-    send_download(conn, {:binary, vcf}, filename: filename)
+  defp do_send_download(conn, vcf, name, city) do
+    send_download(conn, {:binary, vcf}, filename: filename(name, city))
   end
 
   defp filename(name, city) do
@@ -29,6 +29,6 @@ defmodule PyrexWeb.VCardsController do
   end
 
   defp snakecase(string) do
-    string |> String.replace(" ", "_") |> String.downcase()
+    string |> String.replace(" ", "_") |> String.replace(".", "") |> String.downcase()
   end
 end

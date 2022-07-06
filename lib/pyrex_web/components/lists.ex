@@ -96,6 +96,13 @@ defmodule PyrexWeb.Components.Lists do
             <p class="text-base md:text-sm text-gray-500 whitespace-normal">
               <%= @role %>
             </p>
+            <a
+              class="text-base md:text-sm text-indigo-500 hover:text-indigo-700 whitespace-normal"
+              target="_blank"
+              href={@person.current_term.url}
+            >
+              <%= @person.current_term.url %>
+            </a>
             <div class="mt-2">
               <p class="text-base md:text-sm text-gray-500 whitespace-normal">
                 <%= @address %>
